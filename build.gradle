@@ -1,0 +1,28 @@
+/* ================================================================ */
+
+plugins {
+    id 'java'
+    id 'java-library'
+    id 'eclipse'
+    id 'application'
+}
+
+description = 'Evolution algorithm'
+version = '1.0'
+
+mainClassName = 'dummy'
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+/* ================================================================ */
+
+dependencies {
+    implementation 'com.google.guava:guava:24.0-jre'
+
+    testImplementation 'junit:junit:4.12'
+}
+
+repositories {
+    jcenter()
+}
