@@ -21,3 +21,6 @@
 ## Java files
 *.class
 *.jar
+
+# except Gradle wrapper
+!/gradle/wrapper/gradle-wrapper.jar
