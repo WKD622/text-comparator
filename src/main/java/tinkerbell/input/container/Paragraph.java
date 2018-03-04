@@ -18,18 +18,6 @@ public class Paragraph implements Container<Sentence>{
 	}
 
 	@Override
-	public void deleteElement(Sentence element) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Sentence findElement(Sentence element) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<Sentence> getAll() {
 		// TODO Auto-generated method stub
 		return null;

@@ -20,18 +20,6 @@ public class Sentence implements TextElementSequece {
 	}
 
 	@Override
-	public void deleteElement(TextElement element) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public TextElement findElement(TextElement element) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<TextElement> getAll() {
 		// TODO Auto-generated method stub
 		return null;

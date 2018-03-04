@@ -14,14 +14,15 @@ public interface Container<T> {
 	
 	void addElement(T element);
 	
-	void deleteElement(T element);
-	
-	T findElement(T element);
-	
 	List<T> getAll();
 	
 	default Stream<T> stream(){
 		return getAll().stream();
 	}
 	
+	@Override
+	boolean equals(Object obj);
+	
+	@Override
+	int hashCode();
 }
