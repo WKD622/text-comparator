@@ -20,6 +20,9 @@ public interface Container<T> {
 	
 	List<T> getAll();
 	
-	Stream<T> stream();
+	default Stream<T> stream(){
+		return getAll().stream();
+		
+	};
 	
 }
