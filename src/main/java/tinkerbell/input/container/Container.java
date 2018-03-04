@@ -6,12 +6,10 @@ import java.util.stream.Stream;
 /**
  * Represents basic structure component interface
  * 
- * @author Pawel, Kuba
+ * @author Paweł Zeller, Jakub Ziarko
  * @param <T>
- * 
  */
 public interface Container<T> {
-	
 	void addElement(T element);
 	
 	List<T> getAll();

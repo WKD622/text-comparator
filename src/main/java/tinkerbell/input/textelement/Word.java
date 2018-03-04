@@ -1,10 +1,10 @@
 package tinkerbell.input.textelement;
+
 /**
  * Representation of a single word
  * 
- * @author Pawe≥, Kuba
- * 
+ * @author Pawe≈Ç Zeller, Jakub Ziarko
  */
-public interface Word extends TextElement{
-
+public interface Word extends TextElement {
+	
 }

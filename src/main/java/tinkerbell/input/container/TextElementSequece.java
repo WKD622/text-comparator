@@ -6,8 +6,7 @@ import tinkerbell.input.textelement.TextElement;
  * Represents sequence of basic sentence components: words, punctuation marks etc.
  * (TextElement objects)
  * 
- * @author Pawe�, Kuba
- * 
+ * @author Paweł Zeller, Jakub Ziarko
  */
 public interface TextElementSequece extends Container<TextElement> {
 	

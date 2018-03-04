@@ -1,9 +1,9 @@
 package tinkerbell.input.textelement;
+
 /**
  * Basic structure, represents words, punctuation marks etc.
  * 
- * @author Pawe≥, Kuba
- * 
+ * @author Pawe≈Ç Zeller, Jakub Ziarko
  */
 public interface TextElement {
 	
