@@ -11,5 +11,4 @@ import tinkerbell.input.textelement.TextElement;
  */
 public interface TextElementSequece extends Container<TextElement> {
 	
-	
 }
