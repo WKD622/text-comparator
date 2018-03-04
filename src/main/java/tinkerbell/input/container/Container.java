@@ -1,11 +1,12 @@
 package tinkerbell.input.container;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * Represents basic structure component interface
  * 
- * @author Pawe³, Kuba
+ * @author Pawel, Kuba
  * @param <T>
  * 
  */
@@ -18,5 +19,7 @@ public interface Container<T> {
 	T findElement(T element);
 	
 	List<T> getAll();
+	
+	Stream<T> stream();
 	
 }
