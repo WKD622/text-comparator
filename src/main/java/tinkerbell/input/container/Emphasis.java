@@ -13,7 +13,7 @@ import tinkerbell.input.textelement.TextElement;
  * 
  */
 public class Emphasis implements TextElementSequece {
-
+	
 	@Override
 	public void addElement(TextElement element) {
 		// TODO Auto-generated method stub

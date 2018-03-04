@@ -1,7 +1,6 @@
 package tinkerbell.input.container;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 import tinkerbell.input.textelement.TextElement;
 
@@ -33,12 +32,6 @@ public class Strong implements TextElementSequece {
 
 	@Override
 	public List<TextElement> getAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Stream<TextElement> stream() {
 		// TODO Auto-generated method stub
 		return null;
 	}
