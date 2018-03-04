@@ -18,18 +18,6 @@ public class Section implements Container<Paragraph> {
 	}
 
 	@Override
-	public void deleteElement(Paragraph element) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Paragraph findElement(Paragraph element) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<Paragraph> getAll() {
 		// TODO Auto-generated method stub
 		return null;
