@@ -23,9 +23,8 @@ public class Text implements Container<Section> {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof Text)
-			if (sections.equals(((Text) obj).getSections()))
-				return true;
+		if (obj instanceof Text && sections.equals(((Text) obj).getSections()))
+			return true;
 		return false;
 	}
 
