@@ -1,6 +1,7 @@
 package tinkerbell.input.container;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -22,13 +23,9 @@ public class Text implements Container<Section> {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof Text) {
-			for (int i = 0; i<sections.size(); i++) {
-				if (!sections.get(i).equals(((Text) obj).getSections().get(i)));
-					return false;
-			}
-			return true;
-		}
+		if (obj instanceof Text)
+			if (sections.equals(((Text) obj).getSections()))
+				return true;
 		return false;
 	}
 
