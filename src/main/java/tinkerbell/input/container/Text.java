@@ -22,13 +22,14 @@ public class Text implements Container<Section> {
 
 	@Override
 	public boolean equals(Object obj) {
-		boolean eq = true;
 		if (obj instanceof Text) {
-			for (int i = 0; i<sections.size(); i++)
+			for (int i = 0; i<sections.size(); i++) {
 				if (!sections.get(i).equals(((Text) obj).getSections().get(i)));
-					eq = false;
+					return false;
+			}
+			return true;
 		}
-		return eq;
+		return false;
 	}
 
 	public List getSections() {
