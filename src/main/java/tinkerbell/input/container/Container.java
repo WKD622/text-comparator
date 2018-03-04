@@ -19,10 +19,4 @@ public interface Container<T> {
 	default Stream<T> stream(){
 		return getAll().stream();
 	}
-	
-	@Override
-	boolean equals(Object obj);
-	
-	@Override
-	int hashCode();
 }
