@@ -15,19 +15,18 @@ public class Sentence implements Container <TextElementSequence> {
 
 	private final List<TextElementSequence> textElementSequences = new ArrayList<>();
 	
+	public Sentence() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	@Override
 	public void addElement(TextElementSequence element) {
 		textElementSequences.add(element);
 	}
 	
-	public List<TextElementSequence> getTextElementSequences() {
-		return textElementSequences;
-	}
-
 	@Override
 	public List<TextElementSequence> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return textElementSequences;
 	}
 	
 	@Override
@@ -35,7 +34,7 @@ public class Sentence implements Container <TextElementSequence> {
 		if (!(obj instanceof Sentence)) return false;
 		
 		Sentence sentence = (Sentence) obj;
-		return textElementSequences.equals(sentence.textElementSequences);
+		return textElementSequences.equals(sentence.getAll());
 	}
 	
 	@Override

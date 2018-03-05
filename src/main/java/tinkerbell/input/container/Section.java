@@ -12,8 +12,8 @@ import java.util.stream.Stream;
 public class Section implements Container<Paragraph> {
 	private final List<Paragraph> paragraphs = new ArrayList<>();
 	
-	public List<Paragraph> getParagraphs() {
-		return paragraphs;
+	public Section() {
+		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
@@ -23,8 +23,7 @@ public class Section implements Container<Paragraph> {
 	
 	@Override
 	public List<Paragraph> getAll() {
-		// TO DO 
-		return null;
+		return paragraphs;
 	}
 	
 	@Override
@@ -37,6 +36,6 @@ public class Section implements Container<Paragraph> {
 		if (!(obj instanceof Section)) return false;
 		
 		Section section = (Section) obj;
-		return paragraphs.equals(section.paragraphs);
+		return paragraphs.equals(section.getAll());
 	}
 }

@@ -26,7 +26,7 @@ public class Emphasis implements TextElementSequence {
 	
 	@Override
 	public List<TextElement> getAll() {
-		return emp
+		return emphasises;
 	}
 	
 	@Override
@@ -39,6 +39,6 @@ public class Emphasis implements TextElementSequence {
 		if (!(obj instanceof Emphasis)) return false;
 		
 		Emphasis emphasis = (Emphasis) obj;
-		return emphasises.equals(emphasis.getEmphasises());
+		return emphasises.equals(emphasis.getAll());
 	}
 }

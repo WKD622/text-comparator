@@ -15,9 +15,10 @@ public class Strong implements TextElementSequence {
 	
 	private final List<TextElement> strongs = new ArrayList<>();
 	
-	public List<TextElement> getStrongs() {
-		return strongs;
+	public Strong() {
+		// TODO Auto-generated constructor stub
 	}
+	
 
 	@Override
 	public void addElement(TextElement element) {
@@ -26,8 +27,7 @@ public class Strong implements TextElementSequence {
 	
 	@Override
 	public List<TextElement> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return strongs;
 	}
 	@Override
 	public int hashCode() {
@@ -39,7 +39,7 @@ public class Strong implements TextElementSequence {
 		if (!(obj instanceof Strong)) return false;
 		
 		Strong strong = (Strong) obj;
-		return strongs.equals(strong.strongs);	
+		return strongs.equals(strong.getAll());	
 	}
 		
 	

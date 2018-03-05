@@ -13,8 +13,8 @@ public class Paragraph implements Container<Sentence> {
 	
 	private final List<Sentence> sentences = new ArrayList<>();
 
-	public List<Sentence> getSentences() {
-		return sentences;
+	public Paragraph() {
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -24,8 +24,7 @@ public class Paragraph implements Container<Sentence> {
 	
 	@Override
 	public List<Sentence> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return sentences;
 	}
 	
 	@Override
@@ -38,7 +37,7 @@ public class Paragraph implements Container<Sentence> {
 		if (!(obj instanceof Paragraph)) return false;
 		
 		Paragraph paragraph = (Paragraph) obj;
-		return sentences.equals(paragraph.sentences);
+		return sentences.equals(paragraph.getAll());
 	}
 	
 }
