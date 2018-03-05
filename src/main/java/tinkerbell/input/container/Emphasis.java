@@ -1,5 +1,6 @@
 package tinkerbell.input.container;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -10,22 +11,34 @@ import tinkerbell.input.textelement.TextElement;
  * 
  * @author Paweł Zeller, Jakub Ziarko
  */
-public class Emphasis implements TextElementSequece {
+public class Emphasis implements TextElementSequence {
+	
+	private final List<TextElement> emphasises = new ArrayList<>();
+	
+	public Emphasis() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	@Override
 	public void addElement(TextElement element) {
-		// TODO Auto-generated method stub
-		
+		emphasises.add(element);
 	}
 	
 	@Override
 	public List<TextElement> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return emp
 	}
 	
 	@Override
-	public Stream<TextElement> stream() {
-		// TODO Auto-generated method stub
-		return null;
+	public int hashCode() {
+		return emphasises.hashCode();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Emphasis)) return false;
+		
+		Emphasis emphasis = (Emphasis) obj;
+		return emphasises.equals(emphasis.getEmphasises());
 	}
 }

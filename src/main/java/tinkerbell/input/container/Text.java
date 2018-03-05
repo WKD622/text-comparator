@@ -11,9 +11,8 @@ import java.util.List;
 public class Text implements Container<Section> {
 	private final List<Section> sections = new ArrayList<>();
 	
-	public List<Section> getSections() {
-		// FIXME error
-		return sections;
+	public Text() {
+		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
@@ -23,8 +22,7 @@ public class Text implements Container<Section> {
 	
 	@Override
 	public List<Section> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return sections;
 	}
 	
 	@Override
@@ -32,7 +30,7 @@ public class Text implements Container<Section> {
 		if (!(obj instanceof Text)) return false;
 		
 		Text text = (Text) obj;
-		return sections.equals(text.sections);
+		return sections.equals(text.getAll());
 	}
 	
 	@Override

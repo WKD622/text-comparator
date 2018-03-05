@@ -1,5 +1,6 @@
 package tinkerbell.input.container;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -9,21 +10,33 @@ import java.util.stream.Stream;
  * @author Paweł Zeller, Jakub Ziarko
  */
 public class Section implements Container<Paragraph> {
+	private final List<Paragraph> paragraphs = new ArrayList<>();
+	
+	public List<Paragraph> getParagraphs() {
+		return paragraphs;
+	}
+	
 	@Override
 	public void addElement(Paragraph element) {
-		// TODO Auto-generated method stub
-		
+		paragraphs.add(element);
 	}
 	
 	@Override
 	public List<Paragraph> getAll() {
-		// TODO Auto-generated method stub
+		// TO DO 
 		return null;
 	}
 	
 	@Override
-	public Stream<Paragraph> stream() {
-		// TODO Auto-generated method stub
-		return null;
+	public int hashCode() {
+		return paragraphs.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Section)) return false;
+		
+		Section section = (Section) obj;
+		return paragraphs.equals(section.paragraphs);
 	}
 }
