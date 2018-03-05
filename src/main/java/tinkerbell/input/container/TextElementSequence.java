@@ -8,6 +8,6 @@ import tinkerbell.input.textelement.TextElement;
  * 
  * @author Paweł Zeller, Jakub Ziarko
  */
-public interface TextElementSequence extends Container<TextElement> {
+public interface TextElementSequence{
 	
 }

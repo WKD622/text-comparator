@@ -20,7 +20,7 @@ public class Section{
 		return paragraphs;
 	}
 
-	public Stream<Sentence> stream(){
+	public Stream<Paragraph> stream(){
 		return getParagraphs().stream();
 	}
 
