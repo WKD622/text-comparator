@@ -18,7 +18,6 @@ public class Strong implements TextElementSequence {
 	public Strong() {
 		// TODO Auto-generated constructor stub
 	}
-	
 
 	@Override
 	public void addElement(TextElement element) {
