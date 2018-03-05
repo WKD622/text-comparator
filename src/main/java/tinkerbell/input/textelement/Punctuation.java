@@ -17,13 +17,14 @@ public class Punctuation implements TextElement {
 	public String getPunctuation() {
 		return punctuation;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof Punctuation)) return false;
-		
+		if (!(obj instanceof Punctuation))
+			return false;
+
 		Punctuation punctuation = (Punctuation) obj;
-		return this.punctuation.equals(punctuation.getPunctuation());	
+		return this.punctuation.equals(punctuation.getPunctuation());
 	}
 	
 	@Override

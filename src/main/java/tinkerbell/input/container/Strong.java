@@ -2,6 +2,7 @@ package tinkerbell.input.container;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import tinkerbell.input.textelement.TextElement;
 
@@ -11,23 +12,22 @@ import tinkerbell.input.textelement.TextElement;
  * @author Paweł Zeller, Jakub Ziarko
  */
 
-public class Strong implements TextElementSequence {
+public class Strong{
 	
-	private final List<TextElement> strongs = new ArrayList<>();
+	private final List<TextElement> strongs;
 	
-	public Strong() {
-		// TODO Auto-generated constructor stub
+	public Strong(List <TextElement> element) {
+		strongs = element;
 	}
 
-	@Override
-	public void addElement(TextElement element) {
-		strongs.add(element);
+	public Stream<TextElement> stream(){
+		return getStrongs().stream();
 	}
 	
-	@Override
-	public List<TextElement> getAll() {
+	public List<TextElement> getStrongs() {
 		return strongs;
 	}
+
 	@Override
 	public int hashCode() {
 		return strongs.hashCode();
@@ -38,7 +38,7 @@ public class Strong implements TextElementSequence {
 		if (!(obj instanceof Strong)) return false;
 		
 		Strong strong = (Strong) obj;
-		return strongs.equals(strong.getAll());	
+		return strongs.equals(strong.getStrongs());	
 	}
 		
 	

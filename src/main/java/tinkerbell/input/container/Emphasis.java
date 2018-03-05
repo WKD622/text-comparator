@@ -13,20 +13,18 @@ import tinkerbell.input.textelement.TextElement;
  */
 public class Emphasis implements TextElementSequence {
 	
-	private final List<TextElement> emphasises = new ArrayList<>();
+	private final List<TextElement> emphasises;
 	
-	public Emphasis() {
-		// TODO Auto-generated constructor stub
+	public Emphasis(List<TextElement> element) {
+		emphasises = element;
 	}
 	
-	@Override
-	public void addElement(TextElement element) {
-		emphasises.add(element);
-	}
-	
-	@Override
-	public List<TextElement> getAll() {
+	public List<TextElement> getEmphasises() {
 		return emphasises;
+	}
+
+	public Stream<TextElement> stream(){
+		return getEmphasises().stream();
 	}
 	
 	@Override
@@ -39,6 +37,6 @@ public class Emphasis implements TextElementSequence {
 		if (!(obj instanceof Emphasis)) return false;
 		
 		Emphasis emphasis = (Emphasis) obj;
-		return emphasises.equals(emphasis.getAll());
+		return emphasises.equals(emphasis.getEmphasises());
 	}
 }

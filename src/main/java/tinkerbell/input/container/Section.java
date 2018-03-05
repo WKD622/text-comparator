@@ -9,23 +9,21 @@ import java.util.stream.Stream;
  * 
  * @author Paweł Zeller, Jakub Ziarko
  */
-public class Section implements Container<Paragraph> {
-	private final List<Paragraph> paragraphs = new ArrayList<>();
+public class Section{
+	private final List<Paragraph> paragraphs;
 	
-	public Section() {
-		// TODO Auto-generated constructor stub
+	public Section(List <Paragraph> element) {
+		paragraphs = element;
 	}
 	
-	@Override
-	public void addElement(Paragraph element) {
-		paragraphs.add(element);
-	}
-	
-	@Override
-	public List<Paragraph> getAll() {
+	public List<Paragraph> getParagraphs() {
 		return paragraphs;
 	}
-	
+
+	public Stream<Sentence> stream(){
+		return getParagraphs().stream();
+	}
+
 	@Override
 	public int hashCode() {
 		return paragraphs.hashCode();
@@ -36,6 +34,6 @@ public class Section implements Container<Paragraph> {
 		if (!(obj instanceof Section)) return false;
 		
 		Section section = (Section) obj;
-		return paragraphs.equals(section.getAll());
+		return paragraphs.equals(section.getParagraphs());
 	}
 }

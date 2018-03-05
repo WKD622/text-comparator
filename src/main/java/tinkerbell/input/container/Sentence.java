@@ -11,22 +11,20 @@ import tinkerbell.input.textelement.TextElement;
  * 
  * @author Paweł Zeller, Jakub Ziarko
  */
-public class Sentence implements Container <TextElementSequence> {
+public class Sentence{
 
-	private final List<TextElementSequence> textElementSequences = new ArrayList<>();
+	private final List<TextElementSequence> textElementSequences;
 	
-	public Sentence() {
-		// TODO Auto-generated constructor stub
+	public Sentence(List <TextElementSequence> element) {
+		textElementSequences = element;
 	}
 	
-	@Override
-	public void addElement(TextElementSequence element) {
-		textElementSequences.add(element);
-	}
-	
-	@Override
-	public List<TextElementSequence> getAll() {
+	public List<TextElementSequence> getTextElementSequences() {
 		return textElementSequences;
+	}
+
+	public Stream<TextElementSequence> stream(){
+		return getTextElementSequences().stream();
 	}
 	
 	@Override
@@ -34,7 +32,7 @@ public class Sentence implements Container <TextElementSequence> {
 		if (!(obj instanceof Sentence)) return false;
 		
 		Sentence sentence = (Sentence) obj;
-		return textElementSequences.equals(sentence.getAll());
+		return textElementSequences.equals(sentence.getTextElementSequences());
 	}
 	
 	@Override

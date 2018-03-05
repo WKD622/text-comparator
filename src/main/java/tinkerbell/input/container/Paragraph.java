@@ -4,29 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import tinkerbell.input.textelement.TextElement;
+
 /**
  * Represents text paragraph in a List of Sentence
  * 
  * @author Paweł Zeller, Jakub Ziarko
  */
-public class Paragraph implements Container<Sentence> {
+public class Paragraph{
 	
-	private final List<Sentence> sentences = new ArrayList<>();
+	private final List<Sentence> sentences;
 
-	public Paragraph() {
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public void addElement(Sentence element) {
-		sentences.add(element);		
+	public Paragraph(List <Sentence> element) {
+		sentences = element;
 	}
 	
-	@Override
-	public List<Sentence> getAll() {
+	public List<Sentence> getSentences() {
 		return sentences;
 	}
 	
+	public Stream<Sentence> stream(){
+		return getSentences().stream();
+	}
+
 	@Override
 	public int hashCode() {
 		return sentences.hashCode();
@@ -37,7 +37,7 @@ public class Paragraph implements Container<Sentence> {
 		if (!(obj instanceof Paragraph)) return false;
 		
 		Paragraph paragraph = (Paragraph) obj;
-		return sentences.equals(paragraph.getAll());
+		return sentences.equals(paragraph.getSentences());
 	}
 	
 }
