@@ -8,7 +8,8 @@ import java.util.stream.Stream;
 /**
  * Represents strong text fragment in a form of a {@link TextElement}s
  * 
- * @author Paweł Zeller, Jakub Ziarko
+ * @author Paweł Zeller
+ * @author Jakub Ziarko
  */
 public class Strong implements TextElementSequence, TextElement {
 	private final List<TextElement> elements;

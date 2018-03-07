@@ -5,7 +5,8 @@ import java.util.stream.Stream;
 /**
  * Representation of a single word
  * 
- * @author Paweł Zeller, Jakub Ziarko
+ * @author Paweł Zeller
+ * @author Jakub Ziarko
  */
 public class Word implements TextElement {
 	private final String word;

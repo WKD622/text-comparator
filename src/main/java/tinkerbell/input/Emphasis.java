@@ -8,7 +8,8 @@ import java.util.stream.Stream;
 /**
  * Represents emphasized text in a form of {@link TextElementSequence}
  * 
- * @author Paweł Zeller, Jakub Ziarko
+ * @author Paweł Zeller
+ * @author Jakub Ziarko
  */
 public class Emphasis implements TextElementSequence, TextElement {
 	private final List<TextElement> elements;
@@ -45,6 +46,7 @@ public class Emphasis implements TextElementSequence, TextElement {
 	 * 
 	 * @return
 	 */
+	@Override
 	public List<TextElement> getElements() {
 		return Collections.unmodifiableList(elements);
 	}

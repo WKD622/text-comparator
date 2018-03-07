@@ -8,7 +8,8 @@ import java.util.stream.Stream;
 /**
  * Represents text section as a List of {@link Paragraph}
  * 
- * @author Paweł Zeller, Jakub Ziarko
+ * @author Paweł Zeller
+ * @author Jakub Ziarko
  */
 public class Section {
 	private final List<Paragraph> paragraphs;

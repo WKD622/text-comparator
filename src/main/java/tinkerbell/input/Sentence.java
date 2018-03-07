@@ -8,7 +8,8 @@ import java.util.stream.Stream;
 /**
  * Represents text sentence as a List of {@link TextElement}s
  * 
- * @author Paweł Zeller, Jakub Ziarko
+ * @author Paweł Zeller
+ * @author Jakub Ziarko
  */
 public class Sentence implements TextElementSequence {
 	private final List<TextElement> elements;
@@ -45,6 +46,7 @@ public class Sentence implements TextElementSequence {
 	 * 
 	 * @return
 	 */
+	@Override
 	public List<TextElement> getElements() {
 		return Collections.unmodifiableList(elements);
 	}

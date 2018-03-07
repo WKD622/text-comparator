@@ -8,7 +8,8 @@ import java.util.stream.Stream;
 /**
  * Representation of whole text as a list of {@link Section}s
  * 
- * @author Paweł Zeller, Jakub Ziarko
+ * @author Paweł Zeller
+ * @author Jakub Ziarko
  */
 public class Text {
 	private final List<Section> sections;

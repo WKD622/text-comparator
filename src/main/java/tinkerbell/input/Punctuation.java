@@ -5,7 +5,8 @@ import java.util.stream.Stream;
 /**
  * Representation a punctuation mark as a TextElement implementation
  * 
- * @author Paweł Zeller, Jakub Ziarko
+ * @author Paweł Zeller
+ * @author Jakub Ziarko
  */
 public class Punctuation implements TextElement {
 	private final String punctuation;
