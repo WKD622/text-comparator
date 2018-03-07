@@ -20,6 +20,13 @@ public class Section {
 		this(paragraphs, false);
 	}
 	
+	/**
+	 * Constructor which protects list from modifications. It creates new list and copies
+	 * there all elements of input list. 
+	 * 
+	 * @param sections
+	 * @param shared - when it's true it creates object witch is modifiable, when false not.
+	 */
 	Section(List<Paragraph> paragraphs, boolean shared) {
 		if (shared) {
 			this.paragraphs = paragraphs;

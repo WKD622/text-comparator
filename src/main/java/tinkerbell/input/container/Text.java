@@ -19,6 +19,13 @@ public class Text {
 		this(sections, false);
 	}
 	
+	/**
+	 * Constructor which protects list from modifications. It creates new list and copies
+	 * there all elements of input list. 
+	 * 
+	 * @param sections
+	 * @param shared - when it's true it creates object witch is modifiable, when false not.
+	 */
 	Text(List<Section> sections, boolean shared) {
 		if (shared) {
 			this.sections = sections;
