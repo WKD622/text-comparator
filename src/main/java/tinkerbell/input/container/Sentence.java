@@ -9,7 +9,7 @@ import tinkerbell.input.textelement.TextElement;
 import tinkerbell.input.textelement.Word;
 
 /**
- * Represents text sentence as a List of TextElementSentence
+ * Represents text sentence as a List of {@link TextElement}s
  * 
  * @author Paweł Zeller, Jakub Ziarko
  */

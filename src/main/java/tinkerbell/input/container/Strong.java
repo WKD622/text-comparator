@@ -9,7 +9,7 @@ import tinkerbell.input.textelement.TextElement;
 import tinkerbell.input.textelement.Word;
 
 /**
- * Represents strong text fragment in a form of a {@link TextElementSequence}.
+ * Represents strong text fragment in a form of a {@link TextElement}s
  * 
  * @author Paweł Zeller, Jakub Ziarko
  */

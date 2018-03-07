@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 import tinkerbell.input.textelement.Word;
 
 /**
- * Represents text section as a List of Paragraph
+ * Represents text section as a List of {@link Paragraph}
  * 
  * @author Paweł Zeller, Jakub Ziarko
  */

@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 import tinkerbell.input.textelement.Word;
 
 /**
- * Represents text paragraph in a List of Sentence
+ * Represents text paragraph in a List of {@link Sentence}
  * 
  * @author Paweł Zeller, Jakub Ziarko
  */

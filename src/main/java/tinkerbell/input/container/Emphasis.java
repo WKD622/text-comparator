@@ -9,7 +9,7 @@ import tinkerbell.input.textelement.TextElement;
 import tinkerbell.input.textelement.Word;
 
 /**
- * Represents emphasized text in a form of TextElementSequence
+ * Represents emphasized text in a form of {@link TextElementSequence}
  * 
  * @author Paweł Zeller, Jakub Ziarko
  */

@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 import tinkerbell.input.textelement.Word;
 
 /**
- * Representation of whole text as a list of sections
+ * Representation of whole text as a list of {@link Section}s
  * 
  * @author Paweł Zeller, Jakub Ziarko
  */
