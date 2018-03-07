@@ -1,5 +1,9 @@
 package tinkerbell.input.textelement;
 
+import java.util.stream.Stream;
+
+import tinkerbell.input.container.Paragraph;
+
 /**
  * Representation of a single word
  * 
@@ -27,6 +31,11 @@ public class Word implements TextElement {
 	@Override
 	public int hashCode() {
 		return word.hashCode();
+	}
+
+	@Override
+	public Stream<Word> words() {
+		return Stream.of(this);
 	}
 	
 	

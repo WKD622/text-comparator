@@ -1,5 +1,7 @@
 package tinkerbell.input.textelement;
 
+import java.util.stream.Stream;
+
 import tinkerbell.input.container.Strong;
 
 /**
@@ -30,5 +32,10 @@ public class Punctuation implements TextElement {
 	@Override
 	public int hashCode() {
 		return punctuation.hashCode();
+	}
+
+	@Override
+	public Stream<Word> words() {
+		return null;
 	}
 }

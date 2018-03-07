@@ -11,7 +11,7 @@ import tinkerbell.input.textelement.TextElement;
  * 
  * @author Paweł Zeller, Jakub Ziarko
  */
-public class Emphasis implements TextElementSequence {
+public class Emphasis implements TextElementSequence, TextElement{
 	
 	private final List<TextElement> emphasises;
 	

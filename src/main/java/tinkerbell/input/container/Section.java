@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import tinkerbell.input.textelement.TextElement;
+
 /**
  * Represents text section as a List of Paragraph
  * 
@@ -24,6 +26,10 @@ public class Section{
 		return getParagraphs().stream();
 	}
 
+	public Stream<Word> words(){
+		return stream().flatMap(Paragraph::words);
+	}
+	
 	@Override
 	public int hashCode() {
 		return paragraphs.hashCode();

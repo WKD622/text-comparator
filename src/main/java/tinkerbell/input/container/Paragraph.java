@@ -26,7 +26,11 @@ public class Paragraph{
 	public Stream<Sentence> stream(){
 		return getSentences().stream();
 	}
-
+	
+	public Stream<Word> words(){
+		return stream().flatMap(Sentence::words);
+	}
+	
 	@Override
 	public int hashCode() {
 		return sentences.hashCode();

@@ -21,11 +21,15 @@ public class Text{
 	public List<Section> getSections() {
 		return sections;
 	}
-
+	
 	public Stream<Section> stream(){
 		return getSections().stream();
 	}
 	
+	public Stream<Word> words(){
+		return stream().flatMap(Section::words);
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof Text)) return false;

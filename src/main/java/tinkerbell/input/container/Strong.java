@@ -12,12 +12,12 @@ import tinkerbell.input.textelement.TextElement;
  * @author Paweł Zeller, Jakub Ziarko
  */
 
-public class Strong{
+public class Strong implements TextElementSequence, TextElement{
 	
-	private final List<TextElement> strongs;
+	private final List<TextElement> textElements;
 	
 	public Strong(List <TextElement> element) {
-		strongs = element;
+		textElements = element;
 	}
 
 	public Stream<TextElement> stream(){
@@ -25,12 +25,12 @@ public class Strong{
 	}
 	
 	public List<TextElement> getStrongs() {
-		return strongs;
+		return textElements;
 	}
 
 	@Override
 	public int hashCode() {
-		return strongs.hashCode();
+		return textElements.hashCode();
 	}
 	
 	@Override
@@ -38,8 +38,7 @@ public class Strong{
 		if (!(obj instanceof Strong)) return false;
 		
 		Strong strong = (Strong) obj;
-		return strongs.equals(strong.getStrongs());	
+		return textElements.equals(strong.getStrongs());	
 	}
 		
-	
 }
