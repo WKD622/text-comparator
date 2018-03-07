@@ -16,4 +16,16 @@ public class TxtParser implements Parser{
 		return null;
 	}
 
+	@Override
+	public void loadFile() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void closeFile() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
