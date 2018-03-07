@@ -1,5 +1,7 @@
 package tinkerbell.input.container;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -16,11 +18,20 @@ public class Emphasis implements TextElementSequence, TextElement {
 	private final List<TextElement> emphasises;
 
 	public Emphasis(List<TextElement> element) {
-		emphasises = element;
+		this(element, false);
 	}
-
+	
+	Emphasis(List<TextElement> element, boolean shared) {
+		if (shared) {
+			this.emphasises = element;
+		} else {
+			this.emphasises = new ArrayList<>();
+			this.emphasises.addAll(emphasises);
+		}
+	}
+	
 	public List<TextElement> getEmphasises() {
-		return emphasises;
+		return Collections.unmodifiableList(emphasises);
 	}
 
 	public Stream<TextElement> stream() {

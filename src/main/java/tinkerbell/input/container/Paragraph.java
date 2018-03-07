@@ -1,5 +1,7 @@
 package tinkerbell.input.container;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -15,11 +17,20 @@ public class Paragraph {
 	private final List<Sentence> sentences;
 
 	public Paragraph(List<Sentence> element) {
-		sentences = element;
+		this(element,false);
+	}
+	
+	Paragraph(List<Sentence> element, boolean shared) {
+		if (shared) {
+			this.sentences = element;
+		} else {
+			this.sentences = new ArrayList<>();
+			this.sentences.addAll(sentences);
+		}
 	}
 
 	public List<Sentence> getSentences() {
-		return sentences;
+		return Collections.unmodifiableList(sentences);
 	}
 
 	public Stream<Sentence> stream() {
