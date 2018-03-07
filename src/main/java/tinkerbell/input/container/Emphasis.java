@@ -17,6 +17,10 @@ public class Emphasis implements TextElementSequence, TextElement {
 
 	private final List<TextElement> emphasises;
 
+	/**
+	 * Basic constructor for Emphasis class.
+	 * @param textElements
+	 */
 	public Emphasis(List<TextElement> element) {
 		this(element, false);
 	}
@@ -37,10 +41,18 @@ public class Emphasis implements TextElementSequence, TextElement {
 		}
 	}
 	
+	/**
+	 * Returns unmodifiable Paragraph List from Emphasis object.
+	 * @return
+	 */
 	public List<TextElement> getEmphasises() {
 		return Collections.unmodifiableList(emphasises);
 	}
 
+	/**
+	 * Returns a stream of all TextElements from Emphasis object.
+	 * @return
+	 */
 	public Stream<TextElement> stream() {
 		return getEmphasises().stream();
 	}
@@ -59,7 +71,10 @@ public class Emphasis implements TextElementSequence, TextElement {
 		return emphasises.equals(emphasis.getEmphasises());
 	}
 
-	@Override
+	/**
+	 * Returns stream of all words from Emphasis object.
+	 * @return
+	 */
 	public Stream<Word> words() {
 		return stream().flatMap(TextElement::words);
 	}

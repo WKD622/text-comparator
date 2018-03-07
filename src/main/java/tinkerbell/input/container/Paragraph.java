@@ -16,6 +16,10 @@ public class Paragraph {
 
 	private final List<Sentence> sentences;
 
+	/**
+	 * Basic constructor for Paragraph class.
+	 * @param textElements
+	 */
 	public Paragraph(List<Sentence> element) {
 		this(element,false);
 	}
@@ -36,14 +40,26 @@ public class Paragraph {
 		}
 	}
 
+	/**
+	 * Returns unmodifiable Sentence List from Paragraph object.
+	 * @return
+	 */
 	public List<Sentence> getSentences() {
 		return Collections.unmodifiableList(sentences);
 	}
 
+	/**
+	 * Returns a stream of all sentences from Paragraph object.
+	 * @return
+	 */
 	public Stream<Sentence> stream() {
 		return getSentences().stream();
 	}
 
+	/**
+	 * Returns stream of all words from Paragraph object.
+	 * @return
+	 */
 	public Stream<Word> words() {
 		return stream().flatMap(Sentence::words);
 	}

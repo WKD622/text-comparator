@@ -14,7 +14,11 @@ import tinkerbell.input.textelement.Word;
  */
 public class Section {
 	private final List<Paragraph> paragraphs;
-
+	
+	/**
+	 * Basic constructor for Section class.
+	 * @param textElements
+	 */
 	public Section(List<Paragraph> paragraphs) {
 		this(paragraphs, false);
 	}
