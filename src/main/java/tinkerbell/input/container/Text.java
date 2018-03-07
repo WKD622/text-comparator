@@ -11,33 +11,34 @@ import tinkerbell.input.textelement.Word;
  * 
  * @author Paweł Zeller, Jakub Ziarko
  */
-public class Text{
+public class Text {
 	private final List<Section> sections = new ArrayList<>();
-	
+
 	public Text() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public List<Section> getSections() {
 		return sections;
 	}
-	
-	public Stream<Section> stream(){
+
+	public Stream<Section> stream() {
 		return getSections().stream();
 	}
-	
-	public Stream<Word> words(){
+
+	public Stream<Word> words() {
 		return stream().flatMap(Section::words);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof Text)) return false;
-		
+		if (!(obj instanceof Text))
+			return false;
+
 		Text text = (Text) obj;
 		return sections.equals(text.getSections());
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return sections.hashCode();

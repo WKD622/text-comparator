@@ -15,11 +15,11 @@ public class Punctuation implements TextElement {
 	public Punctuation(String punctuation) {
 		this.punctuation = punctuation;
 	}
-	
+
 	public String getPunctuation() {
 		return punctuation;
 	}
- 
+
 	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof Punctuation))
@@ -28,7 +28,7 @@ public class Punctuation implements TextElement {
 		Punctuation punctuation = (Punctuation) obj;
 		return this.punctuation.equals(punctuation.getPunctuation());
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return punctuation.hashCode();

@@ -12,18 +12,18 @@ import tinkerbell.input.textelement.Word;
  * @author Paweł Zeller, Jakub Ziarko
  */
 
-public class Strong implements TextElementSequence, TextElement{
-	
+public class Strong implements TextElementSequence, TextElement {
+
 	private final List<TextElement> textElements;
-	
-	public Strong(List <TextElement> element) {
+
+	public Strong(List<TextElement> element) {
 		textElements = element;
 	}
 
-	public Stream<TextElement> stream(){
+	public Stream<TextElement> stream() {
 		return getStrongs().stream();
 	}
-	
+
 	public List<TextElement> getStrongs() {
 		return textElements;
 	}
@@ -32,18 +32,19 @@ public class Strong implements TextElementSequence, TextElement{
 	public int hashCode() {
 		return textElements.hashCode();
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof Strong)) return false;
-		
+		if (!(obj instanceof Strong))
+			return false;
+
 		Strong strong = (Strong) obj;
-		return textElements.equals(strong.getStrongs());	
+		return textElements.equals(strong.getStrongs());
 	}
 
 	@Override
 	public Stream<Word> words() {
-		return stream().flatMap(TextElement::words); 
+		return stream().flatMap(TextElement::words);
 	}
-		
+
 }
