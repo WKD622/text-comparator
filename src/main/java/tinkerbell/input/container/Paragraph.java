@@ -24,7 +24,7 @@ public class Paragraph {
 	 * Constructor which protects list from modifications. It creates new list and copies
 	 * there all elements of input list. 
 	 * 
-	 * @param sections
+	 * @param element
 	 * @param shared - when it's true it creates object witch is modifiable, when false not.
 	 */
 	Paragraph(List<Sentence> element, boolean shared) {

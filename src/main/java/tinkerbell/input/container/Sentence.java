@@ -21,6 +21,13 @@ public class Sentence implements TextElementSequence {
 		this(textElements, false);
 	}
 	
+	/**
+	 * Constructor which protects list from modifications. It creates new list and copies
+	 * there all elements of input list. 
+	 * 
+	 * @param textElements
+	 * @param shared - when it's true it creates object witch is modifiable, when false not.
+	 */
 	Sentence(List<TextElement> textElements, boolean shared) {
 		if (shared) {
 			this.textElements = textElements;
