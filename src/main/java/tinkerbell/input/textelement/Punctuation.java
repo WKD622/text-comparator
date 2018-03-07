@@ -19,7 +19,7 @@ public class Punctuation implements TextElement {
 	public String getPunctuation() {
 		return punctuation;
 	}
-
+ 
 	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof Punctuation))
