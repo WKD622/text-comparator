@@ -10,13 +10,12 @@ import java.util.stream.Stream;
  * 
  * @author Paweł Zeller, Jakub Ziarko
  */
-
 public class Strong implements TextElementSequence, TextElement {
-
-	private final List<TextElement> textElements;
-
+	private final List<TextElement> elements;
+	
 	/**
 	 * Basic constructor for {@link Strong} class.
+	 * 
 	 * @param textElements
 	 */
 	public Strong(List<TextElement> textElements) {
@@ -24,31 +23,35 @@ public class Strong implements TextElementSequence, TextElement {
 	}
 	
 	/**
-	 * Constructor which protects list from modifications. It creates new list and copies
-	 * there all elements of input list. 
+	 * Constructor which protects list from modifications. It creates new list and
+	 * copies there all elements of input list.
 	 * 
 	 * @param textElements
-	 * @param shared - when it's true it creates object witch is modifiable, when false not.
+	 * @param shared
+	 *            when it's true it creates object witch is modifiable, when false
+	 *            not.
 	 */
 	Strong(List<TextElement> textElements, boolean shared) {
 		if (shared) {
-			this.textElements = textElements;
+			this.elements = textElements;
 		} else {
-			this.textElements = new ArrayList<>();
-			this.textElements.addAll(textElements);
+			this.elements = new ArrayList<>();
+			this.elements.addAll(textElements);
 		}
 	}
-
+	
 	/**
 	 * Returns a stream of all {@link TextElement}s from {@link Strong} object.
+	 * 
 	 * @return
 	 */
 	public Stream<TextElement> stream() {
-		return getStrongs().stream();
+		return getElements().stream();
 	}
-
+	
 	/**
 	 * Returns stream of all words from {@link Strong} object.
+	 * 
 	 * @return
 	 */
 	@Override
@@ -58,26 +61,25 @@ public class Strong implements TextElementSequence, TextElement {
 	
 	/**
 	 * Returns unmodifiable {@link TextElement} List from {@link Strong} object.
+	 * 
 	 * @return
 	 */
-	public List<TextElement> getStrongs() {
-		return Collections.unmodifiableList(textElements);
+	@Override
+	public List<TextElement> getElements() {
+		return Collections.unmodifiableList(elements);
 	}
-
+	
 	@Override
 	public int hashCode() {
-		return textElements.hashCode();
+		return elements.hashCode();
 	}
-
+	
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof Strong))
-			return false;
-
+		if (!(obj instanceof Strong)) return false;
+		
 		Strong strong = (Strong) obj;
-		return textElements.equals(strong.getStrongs());
+		return elements.equals(strong.elements);
 	}
-
 	
-
 }

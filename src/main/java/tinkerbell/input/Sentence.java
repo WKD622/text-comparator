@@ -11,11 +11,11 @@ import java.util.stream.Stream;
  * @author Paweł Zeller, Jakub Ziarko
  */
 public class Sentence implements TextElementSequence {
-
-	private final List<TextElement> textElements;
-
+	private final List<TextElement> elements;
+	
 	/**
 	 * Basic constructor for {@link Sentence} class.
+	 * 
 	 * @param textElements
 	 */
 	public Sentence(List<TextElement> textElements) {
@@ -23,57 +23,60 @@ public class Sentence implements TextElementSequence {
 	}
 	
 	/**
-	 * Constructor which protects list from modifications. It creates new list and copies
-	 * there all elements of input list. 
+	 * Constructor which protects list from modifications. It creates new list and
+	 * copies there all elements of input list.
 	 * 
 	 * @param textElements
-	 * @param shared - when it's true it creates object witch is modifiable, when false not.
+	 * @param shared
+	 *            when it's true it creates object witch is modifiable, when false
+	 *            not.
 	 */
 	Sentence(List<TextElement> textElements, boolean shared) {
 		if (shared) {
-			this.textElements = textElements;
+			this.elements = textElements;
 		} else {
-			this.textElements = new ArrayList<>();
-			this.textElements.addAll(textElements);
+			this.elements = new ArrayList<>();
+			this.elements.addAll(textElements);
 		}
 	}
-
+	
 	/**
 	 * Returns unmodifiable {@link TextElement} List from {@link Sentence} object.
+	 * 
 	 * @return
 	 */
-	public List<TextElement> getTextElements() {
-		return Collections.unmodifiableList(textElements);
+	public List<TextElement> getElements() {
+		return Collections.unmodifiableList(elements);
 	}
 	
 	/**
 	 * Returns a stream of all {@link TextElement}s from Sentence object.
+	 * 
 	 * @return
 	 */
 	public Stream<TextElement> stream() {
-		return getTextElements().stream();
+		return elements.stream();
 	}
-
+	
 	/**
 	 * Returns stream of all words from {@link Sentence} object.
+	 * 
 	 * @return
 	 */
 	public Stream<Word> words() {
 		return stream().flatMap(TextElement::words);
 	}
-
+	
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof Sentence))
-			return false;
-
+		if (!(obj instanceof Sentence)) return false;
+		
 		Sentence sentence = (Sentence) obj;
-		return textElements.equals(sentence.getTextElements());
+		return elements.equals(sentence.getElements());
 	}
-
+	
 	@Override
 	public int hashCode() {
-		return textElements.hashCode();
+		return elements.hashCode();
 	}
-
 }

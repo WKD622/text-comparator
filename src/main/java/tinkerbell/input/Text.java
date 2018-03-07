@@ -23,11 +23,13 @@ public class Text {
 	}
 	
 	/**
-	 * Constructor which protects list from modifications. It creates new list and copies
-	 * there all elements of input list.
+	 * Constructor which protects list from modifications. It creates new list and
+	 * copies there all elements of input list.
 	 * 
 	 * @param sections
-	 * @param shared - when it's true it creates object witch is modifiable, when false not.
+	 * @param shared
+	 *            when it's true it creates object witch is modifiable, when false
+	 *            not
 	 */
 	Text(List<Section> sections, boolean shared) {
 		if (shared) {
@@ -40,6 +42,7 @@ public class Text {
 	
 	/**
 	 * Returns unmodifiable {@link Section}s List from {@link Text} object.
+	 * 
 	 * @return
 	 */
 	public List<Section> getSections() {
@@ -48,14 +51,16 @@ public class Text {
 	
 	/**
 	 * Returns a stream of all {@link Section}s from {@link Text} object.
+	 * 
 	 * @return
 	 */
 	public Stream<Section> stream() {
-		return getSections().stream();
+		return sections.stream();
 	}
 	
 	/**
 	 * Returns a stream of all words from {@link Text} object.
+	 * 
 	 * @return
 	 */
 	public Stream<Word> words() {
@@ -67,7 +72,7 @@ public class Text {
 		if (!(obj instanceof Text)) return false;
 		
 		Text text = (Text) obj;
-		return sections.equals(text.getSections());
+		return sections.equals(text.sections);
 	}
 	
 	@Override
