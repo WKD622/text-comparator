@@ -1,10 +1,10 @@
 package tinkerbell.input.container;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
 import tinkerbell.input.textelement.TextElement;
+import tinkerbell.input.textelement.Word;
 
 /**
  * Represents strong text fragment in a form of a {@link TextElementSequence}.
@@ -39,6 +39,11 @@ public class Strong implements TextElementSequence, TextElement{
 		
 		Strong strong = (Strong) obj;
 		return textElements.equals(strong.getStrongs());	
+	}
+
+	@Override
+	public Stream<Word> words() {
+		return stream().flatMap(TextElement::words); 
 	}
 		
 }

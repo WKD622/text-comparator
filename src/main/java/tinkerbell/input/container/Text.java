@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-import tinkerbell.input.textelement.TextElement;
+import tinkerbell.input.textelement.Word;
 
 /**
  * Representation of whole text as a list of sections
