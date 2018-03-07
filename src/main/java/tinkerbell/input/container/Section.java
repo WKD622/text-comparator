@@ -1,9 +1,11 @@
 package tinkerbell.input.container;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
+import tinkerbell.input.textelement.TextElement;
 import tinkerbell.input.textelement.Word;
 
 /**
@@ -14,8 +16,17 @@ import tinkerbell.input.textelement.Word;
 public class Section {
 	private final List<Paragraph> paragraphs;
 
-	public Section(List<Paragraph> element) {
-		paragraphs = element;
+	public Section(List<Paragraph> paragraphs) {
+		this(paragraphs, false);
+	}
+	
+	Section(List<Paragraph> paragraphs, boolean shared) {
+		if (shared) {
+			this.paragraphs = paragraphs;
+		} else {
+			this.paragraphs = new ArrayList<>();
+			this.paragraphs.addAll(paragraphs);
+		}
 	}
 
 	public List<Paragraph> getParagraphs() {
