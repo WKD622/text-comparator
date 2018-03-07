@@ -5,9 +5,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
-import tinkerbell.input.textelement.TextElement;
-import tinkerbell.input.textelement.Word;
-
 /**
  * Represents text sentence as a List of {@link TextElement}s
  * 

@@ -1,8 +1,6 @@
-package tinkerbell.input.textelement;
+package tinkerbell.input.container;
 
 import java.util.stream.Stream;
-
-import tinkerbell.input.container.Strong;
 
 /**
  * Representation a punctuation mark as a TextElement implementation

@@ -5,8 +5,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
-import tinkerbell.input.textelement.Word;
-
 /**
  * Represents text section as a List of {@link Paragraph}
  * 

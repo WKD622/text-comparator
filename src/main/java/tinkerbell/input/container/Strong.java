@@ -5,9 +5,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
-import tinkerbell.input.textelement.TextElement;
-import tinkerbell.input.textelement.Word;
-
 /**
  * Represents strong text fragment in a form of a {@link TextElement}s
  * 

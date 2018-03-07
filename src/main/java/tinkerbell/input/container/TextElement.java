@@ -1,4 +1,4 @@
-package tinkerbell.input.textelement;
+package tinkerbell.input.container;
 
 import java.util.stream.Stream;
 
