@@ -36,6 +36,6 @@ public class Punctuation implements TextElement {
 
 	@Override
 	public Stream<Word> words() {
-		return null;
+		return Stream.of();
 	}
 }
