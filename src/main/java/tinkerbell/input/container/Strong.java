@@ -1,5 +1,7 @@
 package tinkerbell.input.container;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -16,8 +18,17 @@ public class Strong implements TextElementSequence, TextElement {
 
 	private final List<TextElement> textElements;
 
-	public Strong(List<TextElement> element) {
-		textElements = element;
+	public Strong(List<TextElement> textElements) {
+		this(textElements, false);
+	}
+	
+	Strong(List<TextElement> textElements, boolean shared) {
+		if (shared) {
+			this.textElements = textElements;
+		} else {
+			this.textElements = new ArrayList<>();
+			this.textElements.addAll(textElements);
+		}
 	}
 
 	public Stream<TextElement> stream() {
@@ -25,7 +36,7 @@ public class Strong implements TextElementSequence, TextElement {
 	}
 
 	public List<TextElement> getStrongs() {
-		return textElements;
+		return Collections.unmodifiableList(textElements);
 	}
 
 	@Override

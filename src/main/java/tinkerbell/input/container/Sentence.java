@@ -1,5 +1,7 @@
 package tinkerbell.input.container;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -15,12 +17,21 @@ public class Sentence implements TextElementSequence {
 
 	private final List<TextElement> textElements;
 
-	public Sentence(List<TextElement> element) {
-		textElements = element;
+	public Sentence(List<TextElement> textElements) {
+		this(textElements, false);
+	}
+	
+	Sentence(List<TextElement> textElements, boolean shared) {
+		if (shared) {
+			this.textElements = textElements;
+		} else {
+			this.textElements = new ArrayList<>();
+			this.textElements.addAll(textElements);
+		}
 	}
 
 	public List<TextElement> getTextElements() {
-		return textElements;
+		return Collections.unmodifiableList(textElements);
 	}
 
 	public Stream<TextElement> stream() {
