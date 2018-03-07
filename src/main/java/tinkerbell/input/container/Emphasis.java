@@ -42,7 +42,7 @@ public class Emphasis implements TextElementSequence, TextElement {
 	}
 	
 	/**
-	 * Returns unmodifiable Paragraph List from Emphasis object.
+	 * Returns unmodifiable {@link TextElement}s List from {@link Emphasis} object.
 	 * @return
 	 */
 	public List<TextElement> getEmphasises() {
@@ -50,11 +50,19 @@ public class Emphasis implements TextElementSequence, TextElement {
 	}
 
 	/**
-	 * Returns a stream of all TextElements from Emphasis object.
+	 * Returns a stream of all {@link TextElement}s from {@link Emphasis} object.
 	 * @return
 	 */
 	public Stream<TextElement> stream() {
 		return getEmphasises().stream();
+	}
+	
+	/**
+	 * Returns stream of all words from {@link Emphasis} object.
+	 * @return
+	 */
+	public Stream<Word> words() {
+		return stream().flatMap(TextElement::words);
 	}
 
 	@Override
@@ -69,13 +77,5 @@ public class Emphasis implements TextElementSequence, TextElement {
 
 		Emphasis emphasis = (Emphasis) obj;
 		return emphasises.equals(emphasis.getEmphasises());
-	}
-
-	/**
-	 * Returns stream of all words from Emphasis object.
-	 * @return
-	 */
-	public Stream<Word> words() {
-		return stream().flatMap(TextElement::words);
 	}
 }

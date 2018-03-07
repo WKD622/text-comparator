@@ -17,7 +17,7 @@ public class Paragraph {
 	private final List<Sentence> sentences;
 
 	/**
-	 * Basic constructor for Paragraph class.
+	 * Basic constructor for {@link Paragraph} class.
 	 * @param textElements
 	 */
 	public Paragraph(List<Sentence> element) {
@@ -41,7 +41,7 @@ public class Paragraph {
 	}
 
 	/**
-	 * Returns unmodifiable Sentence List from Paragraph object.
+	 * Returns unmodifiable {@link Sentence} List from {@link Paragraph} object.
 	 * @return
 	 */
 	public List<Sentence> getSentences() {
@@ -49,7 +49,7 @@ public class Paragraph {
 	}
 
 	/**
-	 * Returns a stream of all sentences from Paragraph object.
+	 * Returns a stream of all {@link Sentence}s from {@link Paragraph} object.
 	 * @return
 	 */
 	public Stream<Sentence> stream() {
@@ -57,7 +57,7 @@ public class Paragraph {
 	}
 
 	/**
-	 * Returns stream of all words from Paragraph object.
+	 * Returns stream of all words from {@link Paragraph} object.
 	 * @return
 	 */
 	public Stream<Word> words() {

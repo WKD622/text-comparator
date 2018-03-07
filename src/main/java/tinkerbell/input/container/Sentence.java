@@ -18,7 +18,7 @@ public class Sentence implements TextElementSequence {
 	private final List<TextElement> textElements;
 
 	/**
-	 * Basic constructor for Sentence class.
+	 * Basic constructor for {@link Sentence} class.
 	 * @param textElements
 	 */
 	public Sentence(List<TextElement> textElements) {
@@ -42,7 +42,7 @@ public class Sentence implements TextElementSequence {
 	}
 
 	/**
-	 * Returns unmodifiable TextElement List from Sentence object.
+	 * Returns unmodifiable {@link TextElement} List from {@link Sentence} object.
 	 * @return
 	 */
 	public List<TextElement> getTextElements() {
@@ -50,7 +50,7 @@ public class Sentence implements TextElementSequence {
 	}
 	
 	/**
-	 * Returns a stream of all TextElements from Sentence object.
+	 * Returns a stream of all {@link TextElement}s from Sentence object.
 	 * @return
 	 */
 	public Stream<TextElement> stream() {
@@ -58,7 +58,7 @@ public class Sentence implements TextElementSequence {
 	}
 
 	/**
-	 * Returns stream of all words from Sentence object.
+	 * Returns stream of all words from {@link Sentence} object.
 	 * @return
 	 */
 	public Stream<Word> words() {

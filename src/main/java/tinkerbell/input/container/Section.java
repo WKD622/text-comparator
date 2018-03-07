@@ -16,7 +16,7 @@ public class Section {
 	private final List<Paragraph> paragraphs;
 	
 	/**
-	 * Basic constructor for Section class.
+	 * Basic constructor for {@link Section} class.
 	 * @param textElements
 	 */
 	public Section(List<Paragraph> paragraphs) {
@@ -40,7 +40,7 @@ public class Section {
 	}
 
 	/**
-	 * Returns unmodifiable Paragraph List from Section object.
+	 * Returns unmodifiable {@link Paragraph}s List from {@link Section} object.
 	 * @return
 	 */
 	public List<Paragraph> getParagraphs() {
@@ -48,7 +48,7 @@ public class Section {
 	}
 
 	/**
-	 * Returns a stream of all paragraphs from Section object.
+	 * Returns a stream of all paragraphs from {@link Section} object.
 	 * @return
 	 */
 	public Stream<Paragraph> stream() {
@@ -56,7 +56,7 @@ public class Section {
 	}
 	
 	/**
-	 * Returns stream of all words from Section object.
+	 * Returns stream of all words from {@link Section} object.
 	 * @return
 	 */
 	public Stream<Word> words() {

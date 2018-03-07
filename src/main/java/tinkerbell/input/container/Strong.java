@@ -19,7 +19,7 @@ public class Strong implements TextElementSequence, TextElement {
 	private final List<TextElement> textElements;
 
 	/**
-	 * Basic constructor for Strong class.
+	 * Basic constructor for {@link Strong} class.
 	 * @param textElements
 	 */
 	public Strong(List<TextElement> textElements) {
@@ -43,7 +43,7 @@ public class Strong implements TextElementSequence, TextElement {
 	}
 
 	/**
-	 * Returns a stream of all TextElements from Strong object.
+	 * Returns a stream of all {@link TextElement}s from {@link Strong} object.
 	 * @return
 	 */
 	public Stream<TextElement> stream() {
@@ -51,7 +51,7 @@ public class Strong implements TextElementSequence, TextElement {
 	}
 
 	/**
-	 * Returns stream of all words from Strong object.
+	 * Returns stream of all words from {@link Strong} object.
 	 * @return
 	 */
 	@Override
@@ -60,7 +60,7 @@ public class Strong implements TextElementSequence, TextElement {
 	}
 	
 	/**
-	 * Returns unmodifiable TextElement List from Strong object.
+	 * Returns unmodifiable {@link TextElement} List from {@link Strong} object.
 	 * @return
 	 */
 	public List<TextElement> getStrongs() {

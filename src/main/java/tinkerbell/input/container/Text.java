@@ -16,7 +16,7 @@ public class Text {
 	private final List<Section> sections;
 	
 	/**
-	 * Basic constructor for Text class.
+	 * Basic constructor for {@link Text} class.
 	 * 
 	 * @param sections
 	 */
@@ -41,7 +41,7 @@ public class Text {
 	}
 	
 	/**
-	 * Returns unmodifiable sections List from Text object.
+	 * Returns unmodifiable {@link Section}s List from {@link Text} object.
 	 * @return
 	 */
 	public List<Section> getSections() {
@@ -49,7 +49,7 @@ public class Text {
 	}
 	
 	/**
-	 * Returns a stream of all sections from Text object.
+	 * Returns a stream of all {@link Section}s from {@link Text} object.
 	 * @return
 	 */
 	public Stream<Section> stream() {
@@ -57,7 +57,7 @@ public class Text {
 	}
 	
 	/**
-	 * Returns a stream of all words from Text object.
+	 * Returns a stream of all words from {@link Text} object.
 	 * @return
 	 */
 	public Stream<Word> words() {
