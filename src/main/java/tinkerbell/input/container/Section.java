@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
-import tinkerbell.input.textelement.TextElement;
 import tinkerbell.input.textelement.Word;
 
 /**
@@ -36,14 +35,26 @@ public class Section {
 		}
 	}
 
+	/**
+	 * Returns unmodifiable Paragraph List from Section object.
+	 * @return
+	 */
 	public List<Paragraph> getParagraphs() {
 		return Collections.unmodifiableList(paragraphs);
 	}
 
+	/**
+	 * Returns a stream of all paragraphs from Section object.
+	 * @return
+	 */
 	public Stream<Paragraph> stream() {
 		return getParagraphs().stream();
 	}
-
+	
+	/**
+	 * Returns stream of all words from Section object.
+	 * @return
+	 */
 	public Stream<Word> words() {
 		return stream().flatMap(Paragraph::words);
 	}

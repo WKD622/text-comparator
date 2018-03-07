@@ -17,6 +17,10 @@ public class Sentence implements TextElementSequence {
 
 	private final List<TextElement> textElements;
 
+	/**
+	 * Basic constructor for Sentence class.
+	 * @param textElements
+	 */
 	public Sentence(List<TextElement> textElements) {
 		this(textElements, false);
 	}
@@ -37,14 +41,26 @@ public class Sentence implements TextElementSequence {
 		}
 	}
 
+	/**
+	 * Returns unmodifiable TextElement List from Sentence object.
+	 * @return
+	 */
 	public List<TextElement> getTextElements() {
 		return Collections.unmodifiableList(textElements);
 	}
-
+	
+	/**
+	 * Returns a stream of all TextElements from Sentence object.
+	 * @return
+	 */
 	public Stream<TextElement> stream() {
 		return getTextElements().stream();
 	}
 
+	/**
+	 * Returns stream of all words from Sentence object.
+	 * @return
+	 */
 	public Stream<Word> words() {
 		return stream().flatMap(TextElement::words);
 	}
