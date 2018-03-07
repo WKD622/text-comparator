@@ -29,10 +29,6 @@ public class Text {
 	}
 	
 	public List<Section> getSections() {
-<<<<<<< HEAD
-=======
-		
->>>>>>> branch 'input-data-interfaces' of https://gitlab.com/tinkerbell-group/tinkerbell.git
 		return Collections.unmodifiableList(sections);
 	}
 	
