@@ -18,6 +18,10 @@ public class Strong implements TextElementSequence, TextElement {
 
 	private final List<TextElement> textElements;
 
+	/**
+	 * Basic constructor for Strong class.
+	 * @param textElements
+	 */
 	public Strong(List<TextElement> textElements) {
 		this(textElements, false);
 	}
@@ -38,10 +42,27 @@ public class Strong implements TextElementSequence, TextElement {
 		}
 	}
 
+	/**
+	 * Returns a stream of all TextElements from Strong object.
+	 * @return
+	 */
 	public Stream<TextElement> stream() {
 		return getStrongs().stream();
 	}
 
+	/**
+	 * Returns stream of all words from Strong object.
+	 * @return
+	 */
+	@Override
+	public Stream<Word> words() {
+		return stream().flatMap(TextElement::words);
+	}
+	
+	/**
+	 * Returns unmodifiable TextElement List from Strong object.
+	 * @return
+	 */
 	public List<TextElement> getStrongs() {
 		return Collections.unmodifiableList(textElements);
 	}
@@ -60,9 +81,6 @@ public class Strong implements TextElementSequence, TextElement {
 		return textElements.equals(strong.getStrongs());
 	}
 
-	@Override
-	public Stream<Word> words() {
-		return stream().flatMap(TextElement::words);
-	}
+	
 
 }

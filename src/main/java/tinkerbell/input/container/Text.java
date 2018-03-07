@@ -15,13 +15,18 @@ import tinkerbell.input.textelement.Word;
 public class Text {
 	private final List<Section> sections;
 	
+	/**
+	 * Basic constructor for Text class.
+	 * 
+	 * @param sections
+	 */
 	public Text(List<Section> sections) {
 		this(sections, false);
 	}
 	
 	/**
 	 * Constructor which protects list from modifications. It creates new list and copies
-	 * there all elements of input list. 
+	 * there all elements of input list.
 	 * 
 	 * @param sections
 	 * @param shared - when it's true it creates object witch is modifiable, when false not.
@@ -35,14 +40,26 @@ public class Text {
 		}
 	}
 	
+	/**
+	 * Returns unmodifiable sections List from Text object.
+	 * @return
+	 */
 	public List<Section> getSections() {
 		return Collections.unmodifiableList(sections);
 	}
 	
+	/**
+	 * Returns a stream of all sections from Text object.
+	 * @return
+	 */
 	public Stream<Section> stream() {
 		return getSections().stream();
 	}
 	
+	/**
+	 * Returns a stream of all words from Text object.
+	 * @return
+	 */
 	public Stream<Word> words() {
 		return stream().flatMap(Section::words);
 	}
