@@ -10,26 +10,26 @@ import tinkerbell.input.textelement.Word;
  * 
  * @author Paweł Zeller, Jakub Ziarko
  */
-public class Paragraph{
-	
+public class Paragraph {
+
 	private final List<Sentence> sentences;
 
-	public Paragraph(List <Sentence> element) {
+	public Paragraph(List<Sentence> element) {
 		sentences = element;
 	}
-	
+
 	public List<Sentence> getSentences() {
 		return sentences;
 	}
-	
-	public Stream<Sentence> stream(){
+
+	public Stream<Sentence> stream() {
 		return getSentences().stream();
 	}
-	
-	public Stream<Word> words(){
+
+	public Stream<Word> words() {
 		return stream().flatMap(Sentence::words);
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return sentences.hashCode();
@@ -37,10 +37,11 @@ public class Paragraph{
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof Paragraph)) return false;
-		
+		if (!(obj instanceof Paragraph))
+			return false;
+
 		Paragraph paragraph = (Paragraph) obj;
 		return sentences.equals(paragraph.getSentences());
 	}
-	
+
 }
