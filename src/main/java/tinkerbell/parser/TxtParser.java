@@ -1,6 +1,6 @@
 package tinkerbell.parser;
 
-import tinkerbell.input.container.Text;
+import tinkerbell.input.Text;
 
 public class TxtParser implements Parser{
 

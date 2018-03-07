@@ -1,4 +1,4 @@
-package tinkerbell.input.container;
+package tinkerbell.input;
 
 import java.util.ArrayList;
 import java.util.Collections;

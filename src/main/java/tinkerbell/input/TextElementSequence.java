@@ -1,4 +1,4 @@
-package tinkerbell.input.container;
+package tinkerbell.input;
 
 /**
  * Represents sequence of basic sentence components: words, punctuation marks

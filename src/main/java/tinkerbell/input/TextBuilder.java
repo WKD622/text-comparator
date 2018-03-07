@@ -1,4 +1,4 @@
-package tinkerbell.input.container;
+package tinkerbell.input;
 
 public class TextBuilder {
 	private Section section;
