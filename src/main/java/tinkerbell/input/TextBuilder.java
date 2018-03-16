@@ -1,10 +1,21 @@
 package tinkerbell.input;
 
-public class TextBuilder {
-	private Section section;
-	
-	public TextBuilder section(Section section) {
-		this.section = section;
-		return this;
+public interface TextBuilder {
+	public interface SentenceBuilder {
+		SentenceBuilder word(Word w);
 	}
+
+	public interface ParagraphBuilder {
+		ParagraphBuilder sentence(Sentence s);
+
+		SentenceBuilder sentence();
+
+		TextBuilder finish();
+	}
+
+	TextBuilder section(String sectionName);
+
+	ParagraphBuilder paragraph();
+
+	Text build();
 }
