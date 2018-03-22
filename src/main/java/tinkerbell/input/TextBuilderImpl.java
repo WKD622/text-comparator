@@ -16,12 +16,6 @@ class TextBuilderImpl implements TextBuilder {
 		}
 
 		@Override
-		public SentenceBuilder sentence() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
 		public TextBuilder finish() {
 			return TextBuilderImpl.this;
 		}
