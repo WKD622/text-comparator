@@ -58,8 +58,10 @@ public class SentenceBuilderImpl implements SentenceBuilder {
 	
 	@Override
 	public SentenceBuilder end() {
-		info.pop();
-		lists.pop();
+		if (!info.isEmpty() && !lists.isEmpty()) {
+			info.pop();
+			lists.pop();
+		}
 		return this;
 	}
 	
