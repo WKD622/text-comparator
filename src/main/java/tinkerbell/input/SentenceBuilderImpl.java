@@ -14,9 +14,9 @@ import java.util.Stack;
  */
 public class SentenceBuilderImpl implements SentenceBuilder {
 	private List <TextElement> pendingTextElements = new ArrayList<>();
-	Stack<ArrayList <TextElement>> lists = new Stack<ArrayList <TextElement>>();
+	Stack<List <TextElement>> lists = new Stack<>();
 	Stack<Integer> info = new Stack<Integer>();
-	
+	//deque
 	@Override
 	public SentenceBuilder word(String s) {
 		int info = this.info.peek();
@@ -37,7 +37,7 @@ public class SentenceBuilderImpl implements SentenceBuilder {
 	@Override
 	public SentenceBuilder strong() {
 		List <TextElement> strongList = new ArrayList<>();
-		lists.push((ArrayList<TextElement>) strongList);
+		lists.push(strongList);
 		info.push(1);
 		Strong strong = new Strong(strongList);
 		pendingTextElements.add(strong);
@@ -48,7 +48,7 @@ public class SentenceBuilderImpl implements SentenceBuilder {
 	@Override
 	public SentenceBuilder emphasis() {    
 		List <TextElement> emphasisList = new ArrayList<>();
-		lists.push((ArrayList<TextElement>) emphasisList);
+		lists.push(emphasisList);
 		info.push(2);
 		Emphasis emphasis = new Emphasis(emphasisList);
 		pendingTextElements.add(emphasis);
