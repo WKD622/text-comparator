@@ -16,7 +16,7 @@ public interface TextBuilder {
 		ParagraphBuilder sentence(Sentence s);
 		
 		/**
-		 * Finishes a process of creating Paragraphs  
+		 * Finishes a process of creating Paragraphs. 
 		 * @return
 		 */
 		TextBuilder finish();

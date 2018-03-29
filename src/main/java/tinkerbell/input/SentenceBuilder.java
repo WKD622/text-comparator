@@ -3,7 +3,7 @@ package tinkerbell.input;
 public interface SentenceBuilder {
 	SentenceBuilder word(String s);
 	
-	SentenceBuilder bold();
+	SentenceBuilder strong();
 
 	SentenceBuilder emphasis();
 	
