@@ -28,7 +28,7 @@ public interface SentenceBuilder {
 	SentenceBuilder emphasis();
 	
 	/**
-	 * TODP
+	 * TODO
 	 * This methods ends ...
 	 * @return
 	 */
