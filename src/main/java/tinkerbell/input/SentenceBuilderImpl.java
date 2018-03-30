@@ -11,7 +11,6 @@ import java.util.List;
  *
  */
 public class SentenceBuilderImpl implements SentenceBuilder {
-	private List<TextElement> pendingTextElements = new ArrayList<>();
 	private List<QueueElement> queue = new ArrayList<>();
 	
 	@Override
@@ -55,8 +54,7 @@ public class SentenceBuilderImpl implements SentenceBuilder {
 		else if ( countStart > countEnd) {
 			//TODO throw exeption (more starts than ends)
 		}
-		pendingTextElements = internalBuild(0);
-		return new Sentence(pendingTextElements);
+		return new Sentence(internalBuild(0));
 	}
 	
 	private List <TextElement> internalBuild(Integer i) { 
