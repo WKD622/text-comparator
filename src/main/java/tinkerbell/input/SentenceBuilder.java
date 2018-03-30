@@ -39,7 +39,7 @@ public interface SentenceBuilder {
 	 * When it finishes, every call to a method modifying this builder will result
 	 * in an instance of {@link IllegalStateException} being thrown.
 	 * 
-	 * @return the built object
+	 * @return the {@link Sentence} object.
 	 */
 	Sentence build();
 }
