@@ -40,56 +40,56 @@ public class SentenceBuilderImpl implements SentenceBuilder {
 	@Override
 	public Sentence build() {
 		int countEnd = 0, countStart = 0;
-		for (QueueElement element: queue) {
-			if  (element instanceof QueueStartEnd) {
-				if ( element == QueueStartEnd.End)
+		for (QueueElement element : queue) {
+			if (element instanceof QueueStartEnd) {
+				if (element == QueueStartEnd.End)
 					countEnd++;
 				else
 					countStart++;
 			}
 		}
-		if ( countEnd > countStart) {
+		if (countEnd > countStart) {
 			//TODO throw exeption (more ends than starts)
-		}
-		else if ( countStart > countEnd) {
+		} else if (countStart > countEnd) {
 			//TODO throw exeption (more starts than ends)
 		}
 		return new Sentence(internalBuild(0));
 	}
 	
-	private List <TextElement> internalBuild(Integer i) { 
-		List <TextElement> list = new ArrayList<TextElement>();
+	private List<TextElement> internalBuild(Integer i) {
+		List<TextElement> list = new ArrayList<TextElement>();
 		
 		while (!(queue.get(i) instanceof QueueStartEnd) && queue.get(i) != QueueStartEnd.End) {
 			if (queue.get(i) == QueueStartEnd.StrongStart) {
 				list.add(new Strong(internalBuild(i)));
 				
-			}else if (queue.get(i)== QueueStartEnd.EmphasisStart) {
+			} else if (queue.get(i) == QueueStartEnd.EmphasisStart) {
 				list.add(new Emphasis(internalBuild(i)));
-						
+				
 			} else {
-				list.add(new Word(((QueueWord)queue.get(i)).getWord()));	
+				list.add(new Word(((QueueWord) queue.get(i)).getWord()));
 			}
 			i++;
 		}
 		return list;
 	}
 	
-	private interface QueueElement{
+	private interface QueueElement {
 	}
 	
-	private class QueueWord implements QueueElement{
+	private class QueueWord implements QueueElement {
 		private final String word;
 		
 		public String getWord() {
 			return word;
 		}
-		public QueueWord(String word){
+		
+		public QueueWord(String word) {
 			this.word = word;
 		}
 	}
 	
-	private enum QueueStartEnd implements QueueElement{
+	private enum QueueStartEnd implements QueueElement {
 		StrongStart, EmphasisStart, End
 	}
 }
