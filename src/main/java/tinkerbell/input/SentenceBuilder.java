@@ -30,7 +30,7 @@ public interface SentenceBuilder {
 	/**
 	 * TODO
 	 * This methods ends ...
-	 * @return
+	 * @return the built object
 	 */
 	SentenceBuilder end();
 	
