@@ -1,6 +1,7 @@
 package tinkerbell.input;
 
 /**
+ * TODO
  * An instance of this type is used to create {@link Sentence} instances easily...
  * @author jakub
  *
@@ -27,6 +28,7 @@ public interface SentenceBuilder {
 	SentenceBuilder emphasis();
 	
 	/**
+	 * TODP
 	 * This methods ends ...
 	 * @return
 	 */
