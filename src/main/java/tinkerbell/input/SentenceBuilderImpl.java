@@ -40,6 +40,21 @@ public class SentenceBuilderImpl implements SentenceBuilder {
 	
 	@Override
 	public Sentence build() {
+		int countEnd = 0, countStart = 0;
+		for (QueueElement element: queue) {
+			if  (element instanceof QueueStartEnd) {
+				if ( element == QueueStartEnd.End)
+					countEnd++;
+				else
+					countStart++;
+			}
+		}
+		if ( countEnd > countStart) {
+			//TODO throw exeption (more ends than starts)
+		}
+		else if ( countStart > countEnd) {
+			//TO DO throw exeption (more starts than ands)
+		}
 		pendingTextElements = internalBuild(0);
 		return new Sentence(pendingTextElements);
 	}
