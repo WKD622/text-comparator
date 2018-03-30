@@ -14,75 +14,71 @@ import java.util.List;
  */
 public class SentenceBuilderImpl implements SentenceBuilder {
 	private List<TextElement> pendingTextElements = new ArrayList<>();
-	private Deque<List<TextElement>> lists = new ArrayDeque<>();
-	private boolean strongStart = false, emphasisStart = false, lastAddedStrong = false;
+	private List<QueueElement> queue = new ArrayList<>();
 	
 	@Override
 	public SentenceBuilder word(String s) {
-		if (!lists.isEmpty())
-			this.lists.peekFirst().add(new Word(s));
-		else
-			pendingTextElements.add(new Word(s));
+		queue.add(new QueueWord(s));
 		return this;
 	}
 	
 	@Override
 	public SentenceBuilder strong() {
-		if (!strongStart) {
-			strongStart = true;
-			lastAddedStrong = true;
-			List<TextElement> strongList = new ArrayList<>();
-			if (!emphasisStart)
-				pendingTextElements.add(new Strong(strongList));
-			else {
-				ArrayList<TextElement> pom = (ArrayList<TextElement>) pendingTextElements
-						.get(pendingTextElements.size() - 1);
-				pom.add(new Strong(strongList));
-			}
-			lists.addFirst(strongList);
-		}
+		queue.add(QueueStartEnd.StrongStart);
 		return this;
 	}
 	
 	@Override
 	public SentenceBuilder emphasis() {
-		if (!emphasisStart) {
-			emphasisStart = true;
-			lastAddedStrong = false;
-			List<TextElement> emphasisList = new ArrayList<>();
-			if (!strongStart)
-				pendingTextElements.add(new Strong(emphasisList));
-			else {
-				ArrayList<TextElement> pom = (ArrayList<TextElement>) pendingTextElements
-						.get(pendingTextElements.size() - 1);
-				pom.add(new Strong(emphasisList));
-			}
-			lists.addFirst(emphasisList);
-		}
+		queue.add(QueueStartEnd.EmphasisStart);
 		return this;
 	}
 	
 	@Override
 	public SentenceBuilder end() {
-		if (!lists.isEmpty()) {
-			if (lastAddedStrong) {
-				lists.pop();
-				strongStart = false;
-				lastAddedStrong = false;
-			} else {
-				lists.pop();
-				emphasisStart = false;
-				if (!lists.isEmpty()) {
-					lastAddedStrong = true;
-				}
-			}
-		}
+		queue.add(QueueStartEnd.End);
 		return this;
 	}
 	
 	@Override
 	public Sentence build() {
+		pendingTextElements = internalBuild(0);
 		return new Sentence(pendingTextElements);
 	}
 	
+	private List <TextElement> internalBuild(Integer i) { 
+		List <TextElement> list = new ArrayList<TextElement>();
+		
+		while (!(queue.get(i) instanceof QueueStartEnd) && queue.get(i) != QueueStartEnd.End) {
+			if (queue.get(i) == QueueStartEnd.StrongStart) {
+				list.add(new Strong(internalBuild(i)));
+				
+			}else if (queue.get(i)== QueueStartEnd.EmphasisStart) {
+				list.add(new Emphasis(internalBuild(i)));
+						
+			} else {
+				list.add(new Word(((QueueWord)queue.get(i)).getWord()));	
+			}
+			i++;
+		}
+		return list;
+	}
+	
+	private interface QueueElement{
+	}
+	
+	private class QueueWord implements QueueElement{
+		private final String word;
+		
+		public String getWord() {
+			return word;
+		}
+		public QueueWord(String word){
+			this.word = word;
+		}
+	}
+	
+	private enum QueueStartEnd implements QueueElement{
+		StrongStart, EmphasisStart, End
+	}
 }
