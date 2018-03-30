@@ -1,95 +1,84 @@
 package tinkerbell.input;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 
-/**
- * sialalalabamba, Kamil wpadł do szamba, przytrzymał się kija i dostał w
- * ryja...
- * 
- * @author jakub
- *
- */
-public class SentenceBuilderImpl implements SentenceBuilder {
-	private List<QueueElement> queue = new ArrayList<>();
+class SentenceBuilderImpl implements SentenceBuilder {
+	private class Block {
+		private TextElementSupplier supplier;
+		private List<TextElement> elements = new ArrayList<>();
+		
+		private Block(TextElementSupplier supplier) {
+			this.supplier = supplier;
+		}
+		
+		private void add(TextElement el) {
+			elements.add(el);
+		}
+		
+		private TextElement build() {
+			return supplier.supply(elements);
+		}
+	}
+	
+	// when # of blocks is 0, this builder is finished
+	private Deque<Block> blocks = new ArrayDeque<>();
+	
+	SentenceBuilderImpl() {
+		blocks.push(new Block(null));
+	}
+	
+	private void checkFinished() {
+		if (blocks.isEmpty()) throw new IllegalStateException("builder is finished");
+	}
 	
 	@Override
 	public SentenceBuilder word(String s) {
-		queue.add(new QueueWord(s));
+		checkFinished();
+		
+		blocks.peek().add(new Word(s));
 		return this;
 	}
 	
 	@Override
 	public SentenceBuilder strong() {
-		queue.add(QueueStartEnd.StrongStart);
-		return this;
+		return block(l -> new Strong(l, true));
 	}
 	
 	@Override
 	public SentenceBuilder emphasis() {
-		queue.add(QueueStartEnd.EmphasisStart);
+		return block(l -> new Emphasis(l, true));
+	}
+	
+	@Override
+	public SentenceBuilder block(TextElementSupplier supplier) {
+		checkFinished();
+		
+		blocks.push(new Block(supplier));
 		return this;
 	}
 	
 	@Override
 	public SentenceBuilder end() {
-		queue.add(QueueStartEnd.End);
+		if (blocks.size() <= 1) {
+			throw new IllegalStateException("no block to end");
+		}
+		
+		TextElement seq = blocks.pop().build();
+		blocks.peek().add(seq);
+		
 		return this;
 	}
 	
 	@Override
 	public Sentence build() {
-		int countEnd = 0, countStart = 0;
-		for (QueueElement element : queue) {
-			if (element instanceof QueueStartEnd) {
-				if (element == QueueStartEnd.End)
-					countEnd++;
-				else
-					countStart++;
-			}
-		}
-		if (countEnd > countStart) {
-			//TODO throw exeption (more ends than starts)
-		} else if (countStart > countEnd) {
-			//TODO throw exeption (more starts than ends)
-		}
-		return new Sentence(internalBuild(0));
-	}
-	
-	private List<TextElement> internalBuild(Integer i) {
-		List<TextElement> list = new ArrayList<TextElement>();
-		if ( i == 0 ) queue.add(QueueStartEnd.End);
-		while (!(queue.get(i) instanceof QueueStartEnd) && queue.get(i) != QueueStartEnd.End) {
-			if (queue.get(i) == QueueStartEnd.StrongStart) {
-				list.add(new Strong(internalBuild(i)));
-				
-			} else if (queue.get(i) == QueueStartEnd.EmphasisStart) {
-				list.add(new Emphasis(internalBuild(i)));
-				
-			} else {
-				list.add(new Word(((QueueWord) queue.get(i)).getWord()));
-			}
-			i++;
-		}
-		return list;
-	}
-	
-	private interface QueueElement {
-	}
-	
-	private class QueueWord implements QueueElement {
-		private final String word;
+		checkFinished();
 		
-		public String getWord() {
-			return word;
-		}
+		while (blocks.size() > 1)
+			end();
 		
-		public QueueWord(String word) {
-			this.word = word;
-		}
-	}
-	
-	private enum QueueStartEnd implements QueueElement {
-		StrongStart, EmphasisStart, End
+		return new Sentence(blocks.pop().elements, true);
 	}
 }
