@@ -67,8 +67,8 @@ public class SentenceBuilderImpl implements SentenceBuilder {
 		if (!lists.isEmpty()) {
 			if (lastAddedStrong) {
 				lists.pop();
-				lastAddedStrong = false;
 				strongStart = false;
+				lastAddedStrong = false;
 			} else {
 				lists.pop();
 				emphasisStart = false;
