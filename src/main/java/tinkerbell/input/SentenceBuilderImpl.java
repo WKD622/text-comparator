@@ -53,7 +53,7 @@ public class SentenceBuilderImpl implements SentenceBuilder {
 			//TODO throw exeption (more ends than starts)
 		}
 		else if ( countStart > countEnd) {
-			//TODO throw exeption (more starts than ands)
+			//TODO throw exeption (more starts than ends)
 		}
 		pendingTextElements = internalBuild(0);
 		return new Sentence(pendingTextElements);
