@@ -15,7 +15,7 @@ import java.util.List;
 public class SentenceBuilderImpl implements SentenceBuilder {
 	private List<TextElement> pendingTextElements = new ArrayList<>();
 	private Deque<List<TextElement>> lists = new ArrayDeque<>();
-	private boolean strongStart = false, emphasisStart = false;
+	private boolean strongStart = false, emphasisStart = false, lastAddedStrong = false;
 	
 	@Override
 	public SentenceBuilder word(String s) {
@@ -29,6 +29,8 @@ public class SentenceBuilderImpl implements SentenceBuilder {
 	@Override
 	public SentenceBuilder strong() {
 		if (!strongStart) {
+			strongStart = true;
+			lastAddedStrong = true;
 			List<TextElement> strongList = new ArrayList<>();
 			if (!emphasisStart)
 				pendingTextElements.add(new Strong(strongList));
@@ -45,6 +47,8 @@ public class SentenceBuilderImpl implements SentenceBuilder {
 	@Override
 	public SentenceBuilder emphasis() {
 		if (!emphasisStart) {
+			emphasisStart = true;
+			lastAddedStrong = false;
 			List<TextElement> emphasisList = new ArrayList<>();
 			if (!strongStart)
 				pendingTextElements.add(new Strong(emphasisList));
@@ -61,7 +65,17 @@ public class SentenceBuilderImpl implements SentenceBuilder {
 	@Override
 	public SentenceBuilder end() {
 		if (!lists.isEmpty()) {
-			lists.pop();
+			if (lastAddedStrong) {
+				lists.pop();
+				lastAddedStrong = false;
+				strongStart = false;
+			} else {
+				lists.pop();
+				emphasisStart = false;
+				if (!lists.isEmpty()) {
+					lastAddedStrong = true;
+				}
+			}
 		}
 		return this;
 	}
