@@ -58,7 +58,7 @@ public class SentenceBuilderImpl implements SentenceBuilder {
 	
 	private List<TextElement> internalBuild(Integer i) {
 		List<TextElement> list = new ArrayList<TextElement>();
-		if ( i == 0 ) queue.add(QueueStartEnd.End);
+		if (i == 0) queue.add(QueueStartEnd.End);
 		while (!(queue.get(i) instanceof QueueStartEnd) && queue.get(i) != QueueStartEnd.End) {
 			if (queue.get(i) == QueueStartEnd.StrongStart) {
 				list.add(new Strong(internalBuild(i)));
