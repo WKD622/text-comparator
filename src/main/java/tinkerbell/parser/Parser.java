@@ -16,7 +16,7 @@ import tinkerbell.input.Text;
  * </pre>
  * 
  * <p>
- * For additional information aboiut usage of a specific method, see the
+ * For additional information about usage of a specific method, see the
  * documentation thereof.
  *
  * @author Jakub Ziarko
