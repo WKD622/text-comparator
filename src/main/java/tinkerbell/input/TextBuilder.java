@@ -22,7 +22,7 @@ package tinkerbell.input;
  * </pre>
  * 
  * <p>
- * For additional information about usage of a specific method, see the
+ * For additional information aboiut usage of a specific method, see the
  * documentation thereof. For information about creating sentences, see
  * {@link Sentence} or {@link SentenceBuilder}.
  * 
