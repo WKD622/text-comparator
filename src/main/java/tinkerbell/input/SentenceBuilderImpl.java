@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * sialalalabamba, Kamil wpadł do szamba, przytrzymał się kija i dostał w
- * ryja...
- * 
- * @author jakub
+ * SentenceBuilder implementation.
+ * @author Jakub Ziarko
  *
  */
 public class SentenceBuilderImpl implements SentenceBuilder {
