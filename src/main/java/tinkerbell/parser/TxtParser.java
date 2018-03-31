@@ -24,7 +24,7 @@ public class TxtParser implements Parser {
 	
 	@Override
 	public void parse() {
-		
+		parseText();
 	}
 	
 	@Override
@@ -38,12 +38,17 @@ public class TxtParser implements Parser {
 		this.scanner = new Scanner(f);
 	}
 	
+	private void parseText() {
+		textBuilder.section("example"); 
+		parseSections();
+	}
+	
 	private void parseSections() {
-		
+		parseParagraphs();
 	}
 	
 	private void parseParagraphs() {
-		
+		parseSentences();
 	}
 	
 	private void parseSentences() {
