@@ -1,11 +1,19 @@
 package tinkerbell.parser;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
+import tinkerbell.input.SentenceBuilder;
 import tinkerbell.input.Text;
+import tinkerbell.input.TextBuilder;
 
 public class TxtParser implements Parser{
+	private Scanner scanner;
 	File f;
+	TextBuilder textBuilder;
+	SentenceBuilder sentenceBuilder;
+	
 	@Override
 	public void parse() {
 		
@@ -18,15 +26,8 @@ public class TxtParser implements Parser{
 	}
 
 	@Override
-	public void loadFile(String path) {
-		// TODO Auto-generated method stub
-		
+	public void loadFile(String path) throws FileNotFoundException {
+		this.f = new File (path);
+		this.scanner = new Scanner(f);
 	}
-
-	@Override
-	public void closeFile() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
