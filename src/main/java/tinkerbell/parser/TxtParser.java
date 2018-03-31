@@ -1,12 +1,13 @@
 package tinkerbell.parser;
 
+import java.io.File;
+
 import tinkerbell.input.Text;
 
 public class TxtParser implements Parser{
-
+	File f;
 	@Override
 	public void parse() {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -17,7 +18,7 @@ public class TxtParser implements Parser{
 	}
 
 	@Override
-	public void loadFile() {
+	public void loadFile(String path) {
 		// TODO Auto-generated method stub
 		
 	}

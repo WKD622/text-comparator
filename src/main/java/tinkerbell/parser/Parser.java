@@ -1,5 +1,7 @@
 package tinkerbell.parser;
 
+import java.io.File;
+
 import tinkerbell.input.Text;
 
 public interface Parser {
@@ -14,7 +16,7 @@ public interface Parser {
 	 */
 	Text getText();
 	
-	void loadFile();
+	void loadFile(String path);
 	
 	void closeFile();
 }
