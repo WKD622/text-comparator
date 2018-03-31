@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import tinkerbell.input.Text;
 
 /**
- * Instance of this class is used to parse file. It changes it to object
+ * Instance of this class is used to parse files. It changes them to object
  * structure - {@link Text}, form which is easy to do the analysis on.
  * 
  * <p>
@@ -15,6 +15,10 @@ import tinkerbell.input.Text;
  * Text exampleText = exampleParser.getText();
  * </pre>
  * 
+ * <p>
+ * For additional information aboiut usage of a specific method, see the
+ * documentation thereof.
+ *
  * @author Jakub Ziarko
  *
  */
