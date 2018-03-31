@@ -5,89 +5,114 @@ import java.util.List;
 
 /**
  * SentenceBuilder implementation.
+ * 
  * @author Jakub Ziarko
  *
  */
 public class SentenceBuilderImpl implements SentenceBuilder {
-	private List<QueueElement> queue = new ArrayList<>();
+	private List<ElementToBuild> elementsToBuild = new ArrayList<>();
+	int i;
 	
 	@Override
-	public SentenceBuilder word(String s) {
-		queue.add(new QueueWord(s));
+	public SentenceBuilder word(String word) {
+		elementsToBuild.add(new ElementToBuild(word, Tags.Word));
+		return this;
+	}
+	
+	public SentenceBuilder punctuation(String punctuation) {
+		elementsToBuild.add(new ElementToBuild(punctuation, Tags.Punctuation));
 		return this;
 	}
 	
 	@Override
 	public SentenceBuilder strong() {
-		queue.add(QueueStartEnd.StrongStart);
+		elementsToBuild.add(new ElementToBuild(Tags.Strong));
 		return this;
 	}
 	
 	@Override
 	public SentenceBuilder emphasis() {
-		queue.add(QueueStartEnd.EmphasisStart);
+		elementsToBuild.add(new ElementToBuild(Tags.Emphasis));
 		return this;
 	}
 	
 	@Override
 	public SentenceBuilder end() {
-		queue.add(QueueStartEnd.End);
+		elementsToBuild.add(new ElementToBuild(Tags.End));
 		return this;
 	}
 	
 	@Override
 	public Sentence build() {
 		int countEnd = 0, countStart = 0;
-		for (QueueElement element : queue) {
-			if (element instanceof QueueStartEnd) {
-				if (element == QueueStartEnd.End)
-					countEnd++;
-				else
+		for (ElementToBuild element : elementsToBuild) {
+			switch (element.tag) {
+				case Strong: case Emphasis:
 					countStart++;
+					break;
+				case End:
+					countEnd++;
+					break;
+				default:
+					break;
 			}
 		}
-		if (countEnd > countStart) {
-			//TODO throw exeption (more ends than starts)
-		} else if (countStart > countEnd) {
-			//TODO throw exeption (more starts than ends)
+		if (countEnd != countStart) {
+			//TODO throw exeption 
 		}
-		return new Sentence(internalBuild(0));
+		i = 0;
+		return new Sentence(internalBuild());
 	}
 	
-	private List<TextElement> internalBuild(Integer i) {
+	private List<TextElement> internalBuild() {
 		List<TextElement> list = new ArrayList<TextElement>();
-		if (i == 0) queue.add(QueueStartEnd.End);
-		while (!(queue.get(i) instanceof QueueStartEnd) && queue.get(i) != QueueStartEnd.End) {
-			if (queue.get(i) == QueueStartEnd.StrongStart) {
-				list.add(new Strong(internalBuild(i)));
-				
-			} else if (queue.get(i) == QueueStartEnd.EmphasisStart) {
-				list.add(new Emphasis(internalBuild(i)));
-				
-			} else {
-				list.add(new Word(((QueueWord) queue.get(i)).getWord()));
+		
+		while (elementsToBuild.get(i).getTag() != Tags.End &&
+				elementsToBuild.get(i).getElement() != ".") {
+			switch (elementsToBuild.get(i).getTag()) {
+			case Strong:
+				list.add(new Strong(internalBuild()));
+				break;
+			case Emphasis:
+				list.add(new Emphasis(internalBuild()));
+				break;
+			case Word:
+				list.add(new Word(elementsToBuild.get(i).textElement));
+				break;
+			default:
+				list.add(new Punctuation(elementsToBuild.get(i).textElement));
+				break;
 			}
 			i++;
 		}
+		list.add(new Punctuation(elementsToBuild.get(i).textElement));
 		return list;
 	}
 	
-	private interface QueueElement {
-	}
-	
-	private class QueueWord implements QueueElement {
-		private final String word;
+	private class ElementToBuild {
+		private final String textElement;
+		final Tags tag;
 		
-		public String getWord() {
-			return word;
+		public String getElement() {
+			return textElement;
 		}
 		
-		public QueueWord(String word) {
-			this.word = word;
+		public Tags getTag() {
+			return tag;
+		}
+		
+		public ElementToBuild(String element, Tags tag) {
+			this.tag = tag;
+			this.textElement = element;
+		}
+		
+		public ElementToBuild(Tags tag) {
+			this.tag = tag;
+			this.textElement = null;
 		}
 	}
 	
-	private enum QueueStartEnd implements QueueElement {
-		StrongStart, EmphasisStart, End
+	private enum Tags {
+		Strong, Emphasis, End, Punctuation, Word
 	}
 }
