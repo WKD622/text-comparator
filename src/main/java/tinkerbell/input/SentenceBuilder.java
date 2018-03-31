@@ -31,7 +31,9 @@ public interface SentenceBuilder {
 	 * This methods ends any tag. For example if you have already started emphasis and you will
 	 * use end every next added word will be a not emphasise word {@link Word}. There must be the 
 	 * same amout of starts as ends. For example:
-	 * ...emphasis().strong().word("example1").word("example2").end.end
+	 * ...emphasis().strong().word("example1").word("example2").end().end()
+	 * 
+	 * end ends tha last added tag.
 	 * 
 	 * @return the built object
 	 */
