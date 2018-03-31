@@ -39,7 +39,6 @@ public class TxtParser implements Parser {
 	}
 	
 	private void parseText() {
-		textBuilder.section("example"); 
 		parseSections();
 	}
 	
