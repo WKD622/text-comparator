@@ -7,6 +7,14 @@ import tinkerbell.input.Text;
  * Instance of this class is used to parse file. It changes it to object
  * structure - {@link Text}, form which is easy to do the analysis on.
  * 
+ * <p>
+ * Example:
+ * <pre>
+ * Parser exampleParser = new Parser();
+ * exampleParser.parse("example/path/to/file.f");
+ * Text exampleText = exampleParser.getText();
+ * </pre>
+ * 
  * @author Jakub Ziarko
  *
  */
