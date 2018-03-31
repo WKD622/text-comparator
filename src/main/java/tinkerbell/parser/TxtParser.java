@@ -15,10 +15,12 @@ import tinkerbell.input.TextBuilder;
  *
  */
 public class TxtParser implements Parser {
+	private Text text;
 	private Scanner scanner;
-	File f;
-	TextBuilder textBuilder;
-	SentenceBuilder sentenceBuilder;
+	private File f;
+	private TextBuilder textBuilder;
+	private SentenceBuilder sentenceBuilder;
+	private Regexes regexes;
 	
 	@Override
 	public void parse() {
@@ -27,8 +29,7 @@ public class TxtParser implements Parser {
 	
 	@Override
 	public Text getText() {
-		// TODO Auto-generated method stub
-		return null;
+		return text;
 	}
 	
 	@Override
@@ -45,7 +46,20 @@ public class TxtParser implements Parser {
 		
 	}
 	
-	private void parseSentence() {
+	private void parseSentences() {
+		
+	}
+	
+	private class Regexes{
+		private final String newParagraphRegex = "\n\n";
+		private final String newSectionRegex = "\n\n\n";
+		
+		public String getNewParagraphRegex() {
+			return newParagraphRegex;
+		}
+		public String getNewSectionRegex() {
+			return newSectionRegex;
+		}
 		
 	}
 }

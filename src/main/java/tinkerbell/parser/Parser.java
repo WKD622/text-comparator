@@ -5,7 +5,7 @@ import tinkerbell.input.Text;
 
 /**
  * Instance of this class is used to parse file. It changes it to object
- * structure, form which is easy to do the analysis on.
+ * structure - {@link Text}, form which is easy to do the analysis on.
  * 
  * @author Jakub Ziarko
  *
