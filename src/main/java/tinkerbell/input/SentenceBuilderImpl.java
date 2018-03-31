@@ -85,7 +85,8 @@ public class SentenceBuilderImpl implements SentenceBuilder {
 			}
 			i++;
 		}
-		list.add(new Punctuation(elementsToBuild.get(i).textElement));
+		if (elementsToBuild.get(i).getElement() == ".") 
+			list.add(new Punctuation(elementsToBuild.get(i).textElement));
 		return list;
 	}
 	
