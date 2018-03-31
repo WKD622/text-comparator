@@ -4,8 +4,9 @@ import java.io.FileNotFoundException;
 import tinkerbell.input.Text;
 
 /**
- * Instance of this class is used to parse file. It changes it to object structure,
- * form which is easy to do the analysis on.
+ * Instance of this class is used to parse file. It changes it to object
+ * structure, form which is easy to do the analysis on.
+ * 
  * @author Jakub Ziarko
  *
  */
@@ -17,13 +18,15 @@ public interface Parser {
 	
 	/**
 	 * Returns parsed text in {@link Text} object.
+	 * 
 	 * @return
 	 */
 	Text getText();
 	
 	/**
-	 * Loads file which is going to be parsed. The only one argument is localization of file.
-	 * If given path is wrong throws FileNotFoundException.
+	 * Loads file which is going to be parsed. The only one argument is localization
+	 * of file. If given path is wrong throws FileNotFoundException.
+	 * 
 	 * @param path
 	 * @throws FileNotFoundException
 	 */
