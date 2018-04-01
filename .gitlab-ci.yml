@@ -25,6 +25,7 @@ test:
   stage: test
   script: gradle check
   artifacts:
+    when: always
     paths:
       - build/reports
   cache:
