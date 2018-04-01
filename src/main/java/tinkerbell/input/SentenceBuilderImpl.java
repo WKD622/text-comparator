@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class SentenceBuilderImpl implements SentenceBuilder {
 	private List<ElementToBuild> elementsToBuild = new ArrayList<>();
-	int i, countStart = 0, countEnd = 0;
+	int i = 0, countStart = 0, countEnd = 0;
 	
 	@Override
 	public SentenceBuilder word(String word) {
