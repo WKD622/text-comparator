@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class SentenceBuilderImpl implements SentenceBuilder {
 	private List<ElementToBuild> elementsToBuild = new ArrayList<>();
-	int i;
+	int i, countStart = 0, countEnd = 0;
 	
 	@Override
 	public SentenceBuilder word(String word) {
@@ -27,36 +27,26 @@ public class SentenceBuilderImpl implements SentenceBuilder {
 	@Override
 	public SentenceBuilder strong() {
 		elementsToBuild.add(new ElementToBuild(Tags.Strong));
+		countStart++;
 		return this;
 	}
 	
 	@Override
 	public SentenceBuilder emphasis() {
 		elementsToBuild.add(new ElementToBuild(Tags.Emphasis));
+		countStart++;
 		return this;
 	}
 	
 	@Override
 	public SentenceBuilder end() {
 		elementsToBuild.add(new ElementToBuild(Tags.End));
+		countEnd++;
 		return this;
 	}
 	
 	@Override
 	public Sentence build() {
-		int countEnd = 0, countStart = 0;
-		for (ElementToBuild element : elementsToBuild) {
-			switch (element.tag) {
-				case Strong: case Emphasis:
-					countStart++;
-					break;
-				case End:
-					countEnd++;
-					break;
-				default:
-					break;
-			}
-		}
 		if (countEnd != countStart) {
 			//TODO throw exeption 
 		}
@@ -68,7 +58,7 @@ public class SentenceBuilderImpl implements SentenceBuilder {
 		List<TextElement> list = new ArrayList<TextElement>();
 		
 		while (elementsToBuild.get(i).getTag() != Tags.End &&
-				elementsToBuild.get(i).getElement() != ".") {
+				!elementsToBuild.get(i).getElement().equals(".")) {
 			switch (elementsToBuild.get(i).getTag()) {
 			case Strong:
 				list.add(new Strong(internalBuild()));
@@ -85,7 +75,7 @@ public class SentenceBuilderImpl implements SentenceBuilder {
 			}
 			i++;
 		}
-		if (elementsToBuild.get(i).getElement() == ".") 
+		if (elementsToBuild.get(i).getElement().equals(".")) 
 			list.add(new Punctuation(elementsToBuild.get(i).textElement));
 		return list;
 	}
