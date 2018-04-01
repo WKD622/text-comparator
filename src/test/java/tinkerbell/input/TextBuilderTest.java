@@ -1,6 +1,7 @@
 package tinkerbell.input;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -10,6 +11,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import tinkerbell.input.TextBuilder.ParagraphBuilder;
 
 /**
  * Testing {@link TextBuilder} implementation provided by
@@ -83,11 +86,55 @@ class TextBuilderTest {
 	
 	@Test
 	void testNullSectionName() {
-		assertThrows(IllegalArgumentException.class, () -> builder.section(null));
+		assertThrows(IllegalArgumentException.class, () -> builder.section(null), //
+				"Expected IllegalArgumentException when name=null");
 	}
 	
 	@Test
 	void testNullSentence() {
-		assertThrows(IllegalArgumentException.class, () -> builder.paragraph().sentence(null));
+		assertThrows(IllegalArgumentException.class, () -> builder.paragraph().sentence(null), //
+				"Expected IllegalArgumentException when sentence=null");
+	}
+	
+	@Test
+	void testFinishReturnValue() {
+		assertSame(builder, builder.paragraph().finish());
+	}
+	
+	@Test
+	void testFinishSideEffects() {
+		ParagraphBuilder pb = builder.paragraph();
+		pb.sentence(sentenceA);
+		pb.finish();
+		
+		// I'm allowed to add another sentence here,
+		// after finishing the paragraph
+		pb.sentence(sentenceB);
+		
+		builder.paragraph();
+		
+		// I'm allowed to add another sentence here,
+		// after creating a new paragraph
+		pb.sentence(sentenceA);
+		
+		Text text = builder.build();
+		assertEquals(text.getSections().get(0).getParagraphs().get(0).getSentences(),
+				Arrays.asList(sentenceA, sentenceB, sentenceA));
+		
+		assertThrows(IllegalStateException.class, () -> pb.sentence(sentenceB));
+	}
+	
+	@Test
+	void testMultipleBuild() {
+		builder.build();
+		
+		assertThrows(IllegalStateException.class, () -> builder.build());
+	}
+	
+	@Test
+	void testParagraphAfterBuild() {
+		builder.build();
+		
+		assertThrows(IllegalStateException.class, () -> builder.paragraph());
 	}
 }
