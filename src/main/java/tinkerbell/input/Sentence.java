@@ -49,4 +49,8 @@ public class Sentence extends TextElementContainer {
 	public int hashCode() {
 		return super.hashCode();
 	}
+	
+	public static SentenceBuilder builder() {
+		return new SentenceBuilderImpl();
+	}
 }

@@ -10,6 +10,7 @@ import tinkerbell.input.SentenceBuilder;
 import tinkerbell.input.SentenceBuilderImpl;
 import tinkerbell.input.Text;
 import tinkerbell.input.TextBuilder;
+import tinkerbell.input.TextBuilder.ParagraphBuilder;
 
 /**
  * Implementation of Parser for *.txt files.
@@ -21,8 +22,9 @@ public class TxtParser implements Parser {
 	private Text text;
 	private Scanner scanner;
 	private File f;
-	private TextBuilder textBuilder;
-	private SentenceBuilder sentenceBuilder = new SentenceBuilderImpl();
+	private TextBuilder textBuilder = Text.builder();
+	private ParagraphBuilder paragraphBuilder;
+	private SentenceBuilder sentenceBuilder = Sentence.builder();
 	private Regexes regexes = new Regexes();
 	
 	@Override
@@ -42,35 +44,41 @@ public class TxtParser implements Parser {
 	}
 	
 	/**
-	 * Parses the whole *.txt file to {@lik Text} object, does anything without parseSections() method.
+	 * Parses the whole *.txt file to {@lik Text} object, does anything without
+	 * parseSections() method.
 	 */
 	private void parseText() {
 		parseSections();
 	}
 	
 	/**
-	 * Parses choosen section in *.txt file to {@link Section}, does anything without 
-	 * parseParagraph() method inside.
-	 * Uses scanner class, starts parsing where scanner is at this moment.
+	 * Parses choosen section in *.txt file to {@link Section}, does anything
+	 * without parseParagraph() method inside. Uses scanner class, starts parsing
+	 * where scanner is at this moment.
 	 */
 	private void parseSections() {
 		parseParagraph();
 	}
 	
 	/**
-	 * Parses choosen paragraph in *.txt file to {@link Paragraph}, 
-	 * does anything without parseSentence() method inside.
-	 * Uses scanner class, starts parsing where scanner is at this moment. 
+	 * Parses choosen paragraph in *.txt file to {@link Paragraph}, does anything
+	 * without parseSentence() method inside. Uses scanner class, starts parsing
+	 * where scanner is at this moment.
 	 */
 	private void parseParagraph() {
-		parseSentence();
+		while (!scanner.hasNext(regexes.paragraphRegex) && 
+				!scanner.hasNext(regexes.sectionRegex)
+				&& scanner.hasNext()) {
+			paragraphBuilder.sentence(parseSentence());
+		}
+		System.out.println(paragraphBuilder.finish().toString());
 	}
 	
 	/**
-	 * Parses *.txt file from starting point (scanner position in file) to dot creating 
-	 * {@link Sentence} object.
+	 * Parses *.txt file from starting point (scanner position in file) to dot
+	 * creating {@link Sentence} object.
 	 */
-	private void parseSentence() {
+	private Sentence parseSentence() {
 		/*
 		 * till the end of sentence (dot)
 		 */
@@ -89,6 +97,7 @@ public class TxtParser implements Parser {
 				/*
 				 * adds word to builder without punctuation
 				 */
+				System.out.println(wordWithPunctuation);
 				sentenceBuilder
 						.word(wordWithPunctuation.substring(0, wordWithPunctuation.length() - 1));
 				/*
@@ -105,13 +114,15 @@ public class TxtParser implements Parser {
 		 */
 		String lastWordWithDot = scanner.next();
 		sentenceBuilder.word(lastWordWithDot.substring(0, lastWordWithDot.length() - 1));
-		Sentence sentence = sentenceBuilder.punctuation(".").build();
-		System.out.println(sentence.toString());
+		Sentence s = sentenceBuilder.punctuation(".").build();
+		System.out.println(s);
+		return s;
 	}
 	
 	/**
-	 * Class witch stores regexes, function of this class is to give them nice description 
-	 * (variable name) and take them apart from parser class for more clean look.  
+	 * Class witch stores regexes, function of this class is to give them nice
+	 * description (variable name) and take them apart from parser class for more
+	 * clean look.
 	 * 
 	 * @author Jakub Ziarko
 	 */

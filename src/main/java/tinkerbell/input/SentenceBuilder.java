@@ -79,7 +79,7 @@ public interface SentenceBuilder {
 	 * @param punctuation
 	 * @return
 	 */
-	public SentenceBuilder punctuation(String punctuation);
+	SentenceBuilder punctuation(String punctuation);
 	
 	/**
 	 * This methods ends last added tag. For example if you have already started emphasis and you will
@@ -102,4 +102,10 @@ public interface SentenceBuilder {
 	 * @return the {@link Sentence} object.
 	 */
 	Sentence build();
+	
+	/**
+	 * Creates and returns the SenteneBuilder object. 
+	 * 
+	 * @return SentenceBuiler object
+	 */
 }
