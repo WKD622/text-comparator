@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import tinkerbell.input.Section;
 import tinkerbell.input.Sentence;
 import tinkerbell.input.SentenceBuilder;
 import tinkerbell.input.SentenceBuilderImpl;
@@ -26,7 +27,7 @@ public class TxtParser implements Parser {
 	
 	@Override
 	public void parse() {
-		parseSentence();
+		parseText();
 	}
 	
 	@Override
@@ -40,41 +41,93 @@ public class TxtParser implements Parser {
 		this.scanner = new Scanner(f);
 	}
 	
+	/**
+	 * Parses the whole *.txt file to {@lik Text} object, does anything without parseSections() method.
+	 */
 	private void parseText() {
 		parseSections();
 	}
 	
+	/**
+	 * Parses choosen section in *.txt file to {@link Section}, does anything without 
+	 * parseParagraph() method inside.
+	 * Uses scanner class, starts parsing where scanner is at this moment.
+	 */
 	private void parseSections() {
-		parseParagraphs();
+		parseParagraph();
 	}
 	
-	private void parseParagraphs() {
+	/**
+	 * Parses choosen paragraph in *.txt file to {@link Paragraph}, 
+	 * does anything without parseSentence() method inside.
+	 * Uses scanner class, starts parsing where scanner is at this moment. 
+	 */
+	private void parseParagraph() {
 		parseSentence();
 	}
 	
+	/**
+	 * Parses *.txt file from starting point (scanner position in file) to dot creating 
+	 * {@link Sentence} object.
+	 */
 	private void parseSentence() {
+		/*
+		 * till the end of sentence (dot)
+		 */
 		while (!scanner.hasNext(regexes.endOfSentence)) {
+			/*
+			 * if normal word like "cat", "dog"
+			 */
 			if (scanner.hasNext(regexes.word)) {
 				sentenceBuilder.word(scanner.next());
-			} else {
+			}
+			/*
+			 * if word with punctuation like "cat,", "dog;"
+			 */
+			else {
 				String wordWithPunctuation = scanner.next();
+				/*
+				 * adds word to builder without punctuation
+				 */
 				sentenceBuilder
 						.word(wordWithPunctuation.substring(0, wordWithPunctuation.length() - 1));
+				/*
+				 * adds punctuation to builder without word
+				 */
 				sentenceBuilder.punctuation(wordWithPunctuation
 						.substring(wordWithPunctuation.length() - 1, wordWithPunctuation.length()));
 			}
 		}
+		/*
+		 * Last word of sentence is with dot, so it doesn't parse in while, again 
+		 * it divieds this token to two parts - word and punctutation - 
+		 * and adds to builder in order above.
+		 */
 		String lastWordWithDot = scanner.next();
 		sentenceBuilder.word(lastWordWithDot.substring(0, lastWordWithDot.length() - 1));
 		Sentence sentence = sentenceBuilder.punctuation(".").build();
 		System.out.println(sentence.toString());
 	}
 	
+	/**
+	 * Class witch stores regexes, function of this class is to give them nice description 
+	 * (variable name) and take them apart from parser class for more clean look.  
+	 * 
+	 * @author Jakub Ziarko
+	 */
 	private class Regexes {
 		private final String paragraphRegex = "\n\n";
 		private final String sectionRegex = "\n\n\n";
+		/*
+		 * Normal word with dot at the end - without white space.
+		 */
 		private final String endOfSentence = "\\w+\\.";
-		private final String word = "\\w+";
+		/*
+		 * "\\w" - for all words build only with letters ,
+		 * "-" - if the word is build from two words like "czerwono-czarny - but without 
+		 * white characters inside".
+		 */
+		private final String word = "[\\w-]+";
 		
 		public String getParagraphRegex() {
 			return paragraphRegex;

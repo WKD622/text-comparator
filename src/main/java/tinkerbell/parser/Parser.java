@@ -25,7 +25,8 @@ import tinkerbell.input.Text;
 public interface Parser {
 	
 	/**
-	 * Parses input text to object form {@link Text}.
+	 * Parses file which was given with "loadFile(String path)" method to 
+	 * the object form {@link Text}.
 	 */
 	void parse();
 	
