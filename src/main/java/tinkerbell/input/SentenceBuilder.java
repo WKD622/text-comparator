@@ -28,7 +28,27 @@ package tinkerbell.input;
  *
  */
 public interface SentenceBuilder {
-	SentenceBuilder word(String s);
+	/**
+	 * This method adds new word to part which was began earlier. For example: we initalized
+	 * builder as it is shown above, when we just now start adding words like this:
+	 * 
+	 * <pre>
+	 * sb.word("example1").word("example2");
+	 * </pre>
+	 * 
+	 * <p> we will get normal words in our object struture created, but then if we add 
+	 * emphasis method this way:
+	 * 
+	 * <pre>
+	 * sb.emphasis().word("example3").word("example4").end();
+	 * </pre>
+	 * 
+	 * <p> every next added word will be emphasis till we use end() operation.
+	 * 
+	 * @param word
+	 * @return
+	 */
+	SentenceBuilder word(String word);
 	
 	/**
 	 * This method initializes the strong part in {@link Sentence}. After this every 
@@ -48,6 +68,8 @@ public interface SentenceBuilder {
 	 */
 	SentenceBuilder emphasis();
 	
+	
+	public SentenceBuilder punctuation(String punctuation);
 	/**
 	 * This methods ends last added tag. For example if you have already started emphasis and you will
 	 * use end every next added word will be a not emphasise word {@link Word}. There must be the 
