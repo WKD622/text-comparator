@@ -24,7 +24,7 @@ public class TxtParser implements Parser {
 	
 	@Override
 	public void parse() {
-		parseText();
+		parseSentence();
 	}
 	
 	@Override
@@ -47,23 +47,31 @@ public class TxtParser implements Parser {
 	}
 	
 	private void parseParagraphs() {
-		parseSentences();
+		parseSentence();
 	}
 	
-	private void parseSentences() {
-		
+	private void parseSentence() {
+		while(!scanner.hasNext("\\w+\\.")) {
+			sentenceBuilder.word(scanner.next());
+		}
+		sentenceBuilder.
+		String s = scanner.next();
+		System.out.println(s.substring(0, s.length()-1));
 	}
 	
 	private class Regexes{
-		private final String newParagraphRegex = "\n\n";
-		private final String newSectionRegex = "\n\n\n";
+		private final String paragraphRegex = "\n\n";
+		private final String sectionRegex = "\n\n\n";
+		private final String endOfSentence = "[A-Za-z]++";
 		
-		public String getNewParagraphRegex() {
-			return newParagraphRegex;
+		public String getParagraphRegex() {
+			return paragraphRegex;
 		}
-		public String getNewSectionRegex() {
-			return newSectionRegex;
+		public String getSectionRegex() {
+			return sectionRegex;
 		}
-		
+		public String getEndOfSentence(){
+			return endOfSentence;
+		}
 	}
 }

@@ -23,6 +23,7 @@ import tinkerbell.input.Text;
  *
  */
 public interface Parser {
+	
 	/**
 	 * Parses input text to object form {@link Text}.
 	 */
