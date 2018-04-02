@@ -33,6 +33,7 @@ public interface Parser {
 	 * Returns parsed text in {@link Text} object.
 	 * 
 	 * @return
+	 * 
 	 */
 	Text getText();
 	
