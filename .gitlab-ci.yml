@@ -24,6 +24,7 @@ build:
 test:
   stage: test
   script: gradle check jacocoTestReport
+  coverage: /Coverage summary:\s+tinkerbell:\s+(\d+\.\d+)\%/m
   artifacts:
     when: always
     paths:
