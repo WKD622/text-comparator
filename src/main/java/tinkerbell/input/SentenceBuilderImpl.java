@@ -19,6 +19,7 @@ public class SentenceBuilderImpl implements SentenceBuilder {
 		return this;
 	}
 	
+	@Override
 	public SentenceBuilder punctuation(String punctuation) {
 		elementsToBuild.add(new ElementToBuild(punctuation, Tags.Punctuation));
 		return this;
