@@ -52,28 +52,39 @@ public class TxtParser implements Parser {
 		parseSentence();
 	}
 	
-	private void parseSentence() {		
-		while(!scanner.hasNext(regexes.endOfSentence)) {
-			sentenceBuilder.word(scanner.next());
+	private void parseSentence() {
+		while (!scanner.hasNext(regexes.endOfSentence)) {
+			if (scanner.hasNext(regexes.word)) {
+				sentenceBuilder.word(scanner.next());
+			} else {
+				String wordWithPunctuation = scanner.next();
+				sentenceBuilder
+						.word(wordWithPunctuation.substring(0, wordWithPunctuation.length() - 1));
+				sentenceBuilder.punctuation(wordWithPunctuation
+						.substring(wordWithPunctuation.length() - 1, wordWithPunctuation.length()));
+			}
 		}
 		String lastWordWithDot = scanner.next();
-		sentenceBuilder.word(lastWordWithDot.substring(0, lastWordWithDot.length()-1));
+		sentenceBuilder.word(lastWordWithDot.substring(0, lastWordWithDot.length() - 1));
 		Sentence sentence = sentenceBuilder.punctuation(".").build();
 		System.out.println(sentence.toString());
 	}
 	
-	private class Regexes{
+	private class Regexes {
 		private final String paragraphRegex = "\n\n";
 		private final String sectionRegex = "\n\n\n";
 		private final String endOfSentence = "\\w+\\.";
+		private final String word = "\\w+";
 		
 		public String getParagraphRegex() {
 			return paragraphRegex;
 		}
+		
 		public String getSectionRegex() {
 			return sectionRegex;
 		}
-		public String getEndOfSentence(){
+		
+		public String getEndOfSentence() {
 			return endOfSentence;
 		}
 	}
