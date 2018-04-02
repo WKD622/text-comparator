@@ -43,7 +43,8 @@ public interface SentenceBuilder {
 	 * sb.emphasis().word("example3").word("example4").end();
 	 * </pre>
 	 * 
-	 * <p> every next added word will be emphasis till we use end() operation.
+	 * <p> every next added word will be emphasis till we use end() operation. Words added 
+	 * after end() method will be again normal words.
 	 * 
 	 * @param word
 	 * @return
