@@ -20,10 +20,14 @@ build:
       - build
       - .gradle
 
-
 test:
   stage: test
-  script: gradle check
+  script: gradle check jacocoTestReport
+  coverage: '/^Coverage summary:\s+tinkerbell:\s+([0-9]+\.[0-9]+)\%\s*$/'
+  artifacts:
+    when: always
+    paths:
+      - build/reports
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: pull

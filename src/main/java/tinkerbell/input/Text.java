@@ -80,4 +80,8 @@ public class Text {
 	public int hashCode() {
 		return sections.hashCode();
 	}
+	
+	public static TextBuilder builder() {
+		return new TextBuilderImpl();
+	}
 }

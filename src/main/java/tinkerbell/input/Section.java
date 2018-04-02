@@ -12,33 +12,48 @@ import java.util.stream.Stream;
  * @author Jakub Ziarko
  */
 public class Section {
+	private String name;
 	private final List<Paragraph> paragraphs;
 	
 	/**
 	 * Basic constructor for {@link Section} class.
 	 * 
+	 * @param name
 	 * @param textElements
 	 */
-	public Section(List<Paragraph> paragraphs) {
-		this(paragraphs, false);
+	public Section(String name, List<Paragraph> paragraphs) {
+		this(name, paragraphs, false);
 	}
 	
 	/**
 	 * Constructor which protects list from modifications. It creates new list and
 	 * copies there all elements of input list.
 	 * 
+	 * @param name
 	 * @param parahraphs
 	 * @param shared
 	 *            - when it's true it creates object witch is modifiable, when false
 	 *            not.
 	 */
-	Section(List<Paragraph> paragraphs, boolean shared) {
+	Section(String name, List<Paragraph> paragraphs, boolean shared) {
+		this.name = name;
+		
 		if (shared) {
 			this.paragraphs = paragraphs;
 		} else {
 			this.paragraphs = new ArrayList<>();
 			this.paragraphs.addAll(paragraphs);
 		}
+	}
+	
+	/**
+	 * Returns the name of this section. The returned value may be {@code null} when
+	 * no name is available.
+	 * 
+	 * @return the name or {@code null} when not available
+	 */
+	public String getName() {
+		return name;
 	}
 	
 	/**
