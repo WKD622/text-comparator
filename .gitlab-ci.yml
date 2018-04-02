@@ -20,11 +20,10 @@ build:
       - build
       - .gradle
 
-
 test:
   stage: test
   script: gradle check jacocoTestReport
-  coverage: '/Coverage summary:\s+tinkerbell:\s+([0-9]+\.[0-9]+)\%/'
+  coverage: '/^Coverage summary:\s+tinkerbell:\s+([0-9]+\.[0-9]+)\%\s*$/'
   artifacts:
     when: always
     paths:
