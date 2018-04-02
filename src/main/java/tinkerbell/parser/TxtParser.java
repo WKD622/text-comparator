@@ -63,7 +63,8 @@ public class TxtParser implements Parser {
 	/**
 	 * Parses choosen paragraph in *.txt file to {@link Paragraph}, does anything
 	 * without parseSentence() method inside. Uses scanner class, starts parsing
-	 * where scanner is at this moment.
+	 * where scanner is at this moment. Ends at the beginning of another paragraph,
+	 * section or end of file.
 	 */
 	private void parseParagraph() {
 		while (!scanner.hasNext(regexes.paragraphRegex) && 
