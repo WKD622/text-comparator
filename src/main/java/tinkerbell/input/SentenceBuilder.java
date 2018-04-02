@@ -51,7 +51,7 @@ public interface SentenceBuilder {
 	SentenceBuilder word(String word);
 	
 	/**
-	 * This method initializes the strong part in {@link Sentence}. After this every 
+	 * This method initializes the new tag - strong part in {@link Sentence}. After this every 
 	 * {@link Word} added will be a strong word till end call. It can be used togather 
 	 * with other tags start methods.
 	 * 
@@ -60,7 +60,7 @@ public interface SentenceBuilder {
 	SentenceBuilder strong();
 
 	/**
-	 * This method initializes the emphasis part in {@link Sentence}. After this every 
+	 * This method initializes the new tag - emphasis part in {@link Sentence}. After this every 
 	 * {@link Word} added will be a emphasis word till end call. It can be used togather 
 	 * with other tags start methods.
 	 * 
@@ -68,8 +68,18 @@ public interface SentenceBuilder {
 	 */
 	SentenceBuilder emphasis();
 	
-	
+	/**
+	 * This method adds new punctuation. We use it to add punctuation to our object structure.
+	 * For example sentence like "Example1 example2, example3." will look like this when being 
+	 * created:
+	 * 
+	 * <pre>
+	 * sb.word("Example1").word("example2").punctuation(",").word("example3").punctuation(".");
+	 * @param punctuation
+	 * @return
+	 */
 	public SentenceBuilder punctuation(String punctuation);
+	
 	/**
 	 * This methods ends last added tag. For example if you have already started emphasis and you will
 	 * use end every next added word will be a not emphasise word {@link Word}. There must be the 
