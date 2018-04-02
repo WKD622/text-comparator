@@ -86,7 +86,7 @@ public interface SentenceBuilder {
 	 * same amout of starts as ends. For example:
 	 * 
 	 * <pre>
-	 * ...emphasis().strong().word("example1").word("example2").end().end()
+	 * sb.emphasis().strong().word("example1").word("example2").end().end()
 	 * </pre>
 	 * 
 	 * @return the built object
