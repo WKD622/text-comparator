@@ -1,4 +1,4 @@
-package tinkerbell.input;
+/*package tinkerbell.input;
 
 /**
  * Testing {@link SentenceBuilder} implementation provided by
@@ -10,3 +10,4 @@ package tinkerbell.input;
 public class SentenceBuilderTest {
 	
 }
+*/

@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import tinkerbell.input.Sentence;
 import tinkerbell.input.SentenceBuilder;
+import tinkerbell.input.SentenceBuilderImpl;
 import tinkerbell.input.Text;
 import tinkerbell.input.TextBuilder;
 
@@ -19,8 +21,8 @@ public class TxtParser implements Parser {
 	private Scanner scanner;
 	private File f;
 	private TextBuilder textBuilder;
-	private SentenceBuilder sentenceBuilder;
-	private Regexes regexes;
+	private SentenceBuilder sentenceBuilder = new SentenceBuilderImpl();
+	private Regexes regexes = new Regexes();
 	
 	@Override
 	public void parse() {
@@ -50,18 +52,20 @@ public class TxtParser implements Parser {
 		parseSentence();
 	}
 	
-	private void parseSentence() {
-		while(!scanner.hasNext("\\w+\\.")) {
+	private void parseSentence() {		
+		while(!scanner.hasNext(regexes.endOfSentence)) {
 			sentenceBuilder.word(scanner.next());
 		}
 		String lastWordWithDot = scanner.next();
 		sentenceBuilder.word(lastWordWithDot.substring(0, lastWordWithDot.length()-1));
+		Sentence sentence = sentenceBuilder.punctuation(".").build();
+		System.out.println(sentence.toString());
 	}
 	
 	private class Regexes{
 		private final String paragraphRegex = "\n\n";
 		private final String sectionRegex = "\n\n\n";
-		private final String endOfSentence = "[A-Za-z]++";
+		private final String endOfSentence = "\\w+\\.";
 		
 		public String getParagraphRegex() {
 			return paragraphRegex;

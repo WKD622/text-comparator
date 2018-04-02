@@ -2,6 +2,8 @@ package tinkerbell.input;
 
 import java.util.List;
 
+import javax.lang.model.util.Elements;
+
 /**
  * Represents text sentence as a List of {@link TextElement}s
  * 
@@ -29,6 +31,11 @@ public class Sentence extends TextElementContainer {
 	 */
 	Sentence(List<TextElement> elements, boolean shared) {
 		super(elements, shared);
+	}
+	
+	@Override
+	public String toString() {
+		return getElements().toString();
 	}
 	
 	@Override

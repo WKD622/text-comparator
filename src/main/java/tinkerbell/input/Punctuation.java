@@ -20,6 +20,10 @@ public class Punctuation implements TextElement {
 	}
 	
 	@Override
+	public String toString() {
+		return this.punctuation.toString();
+	}
+	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof Punctuation)) return false;
 		

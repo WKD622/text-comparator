@@ -28,6 +28,11 @@ public class Word implements TextElement {
 	}
 	
 	@Override
+	public String toString() {
+		return this.word.toString();
+	}
+	
+	@Override
 	public int hashCode() {
 		return word.hashCode();
 	}
