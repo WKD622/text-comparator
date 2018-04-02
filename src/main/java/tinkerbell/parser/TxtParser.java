@@ -54,9 +54,8 @@ public class TxtParser implements Parser {
 		while(!scanner.hasNext("\\w+\\.")) {
 			sentenceBuilder.word(scanner.next());
 		}
-		sentenceBuilder.
-		String s = scanner.next();
-		System.out.println(s.substring(0, s.length()-1));
+		String lastWordWithDot = scanner.next();
+		sentenceBuilder.word(lastWordWithDot.substring(0, lastWordWithDot.length()-1));
 	}
 	
 	private class Regexes{

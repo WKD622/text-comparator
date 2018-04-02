@@ -32,7 +32,7 @@ public interface Parser {
 	/**
 	 * Returns parsed text in {@link Text} object.
 	 * 
-	 * @return
+	 * @return Text
 	 * 
 	 */
 	Text getText();
