@@ -22,7 +22,7 @@ package tinkerbell.input;
  * </pre>
  * 
  * <p>
- * For additional information aboiut usage of a specific method, see the
+ * For additional information about usage of a specific method, see the
  * documentation thereof. For information about creating sentences, see
  * {@link Sentence} or {@link SentenceBuilder}.
  * 
@@ -52,14 +52,15 @@ public interface TextBuilder {
 		 * @return a reference to this object
 		 * 
 		 * @throws IllegalStateException
-		 *             when {@link TextBuilder#build()} has been called on the parent
+		 *             when {@link TextBuilder#build()} or
+		 *             {@link TextBuilder#section(String)} has been called on the parent
 		 */
 		ParagraphBuilder sentence(Sentence sentence);
 		
 		/**
-		 * Finishes the process of creating a paragraph. This method is non-binding,
-		 * i.e. after calling this method it's still possible to use the builder. The
-		 * call which disallows to modify this builder further is
+		 * Finishes the process of creating a paragraph. After calling this method it's
+		 * still possible to use the builder. The call which disallows to modify this
+		 * builder further is {@link TextBuilder#section(String)} or
 		 * {@link TextBuilder#build()}.
 		 * 
 		 * <p>
@@ -105,7 +106,7 @@ public interface TextBuilder {
 	/**
 	 * Starts a new paragraph. In order to build the paragraph, an instance of
 	 * {@link ParagraphBuilder} is returned which is coupled with the builder this
-	 * method is called on. This object is called the parent of the returned
+	 * method is called on. This object is called a <em>parent</em> of the returned
 	 * {@link ParagraphBuilder}.
 	 * 
 	 * <p>

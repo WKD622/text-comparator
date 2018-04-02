@@ -102,7 +102,7 @@ class TextBuilderTest {
 	}
 	
 	@Test
-	void testFinishSideEffects() {
+	void testFinishSideEffects1() {
 		ParagraphBuilder pb = builder.paragraph();
 		pb.sentence(sentenceA);
 		pb.finish();
@@ -116,6 +116,53 @@ class TextBuilderTest {
 		// I'm allowed to add another sentence here,
 		// after creating a new paragraph
 		pb.sentence(sentenceA);
+	}
+	
+	@Test
+	void testFinishSideEffects2() {
+		ParagraphBuilder pb = builder.paragraph();
+		pb.sentence(sentenceA);
+		pb.finish();
+		
+		pb.sentence(sentenceB);
+		
+		builder.section("test");
+		
+		// I'm not allowed to add sentence after creating a new section
+		assertThrows(IllegalStateException.class, () -> pb.sentence(sentenceB));
+	}
+	
+	@Test
+	void testFinishSideEffects3() {
+		ParagraphBuilder pb = builder.paragraph();
+		pb.sentence(sentenceA);
+		pb.finish();
+		
+		// I'm allowed to add another sentence here,
+		// after finishing the paragraph
+		pb.sentence(sentenceB);
+		
+		builder.build();
+		
+		// I'm not allowed to add sentence after building
+		assertThrows(IllegalStateException.class, () -> pb.sentence(sentenceB));
+	}
+	
+	@Test
+	void testFinishSideEffects4() {
+		ParagraphBuilder pb = builder.paragraph();
+		pb.sentence(sentenceA);
+		pb.finish();
+		
+		pb.sentence(sentenceB);
+		
+		builder.paragraph();
+		
+		pb.sentence(sentenceA);
+		
+		builder.section("test");
+		
+		assertThrows(IllegalStateException.class, () -> pb.sentence(sentenceB));
 		
 		Text text = builder.build();
 		assertEquals(text.getSections().get(0).getParagraphs().get(0).getSentences(),
