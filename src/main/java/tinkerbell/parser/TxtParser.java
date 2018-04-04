@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import tinkerbell.input.Paragraph;
 import tinkerbell.input.Section;
 import tinkerbell.input.Sentence;
 import tinkerbell.input.SentenceBuilder;
@@ -24,7 +25,7 @@ public class TxtParser implements Parser {
 	private File f;
 	private TextBuilder textBuilder = Text.builder();
 	private ParagraphBuilder paragraphBuilder;
-	private SentenceBuilder sentenceBuilder = Sentence.builder();
+	private SentenceBuilder sentenceBuilder;
 	private Regexes regexes = new Regexes();
 	
 	@Override
@@ -49,6 +50,7 @@ public class TxtParser implements Parser {
 	 */
 	private void parseText() {
 		parseSections();
+		textBuilder.build();
 	}
 	
 	/**
@@ -67,12 +69,14 @@ public class TxtParser implements Parser {
 	 * section or end of file.
 	 */
 	private void parseParagraph() {
-		while (!scanner.hasNext(regexes.paragraphRegex) && 
+		paragraphBuilder = textBuilder.paragraph();
+		while (!scanner.hasNext(regexes.paragraphRegex) &&
 				!scanner.hasNext(regexes.sectionRegex)
 				&& scanner.hasNext()) {
-			paragraphBuilder.sentence(parseSentence());
+			System.out.println(parseSentence());
+			//paragraphBuilder.sentence(parseSentence());
 		}
-		System.out.println(paragraphBuilder.finish().toString());
+		paragraphBuilder.finish();
 	}
 	
 	/**
@@ -80,6 +84,7 @@ public class TxtParser implements Parser {
 	 * creating {@link Sentence} object.
 	 */
 	private Sentence parseSentence() {
+		sentenceBuilder = Sentence.builder();
 		/*
 		 * till the end of sentence (dot)
 		 */
@@ -87,18 +92,17 @@ public class TxtParser implements Parser {
 			/*
 			 * if normal word like "cat", "dog"
 			 */
-			if (scanner.hasNext(regexes.word)) {
+			if (scanner.hasNext(regexes.getWordRegex())) {
 				sentenceBuilder.word(scanner.next());
 			}
 			/*
-			 * if word with punctuation like "cat,", "dog;"
+			 * if word with punctuation like " cat, ", " dog; "
 			 */
-			else {
+			else if (scanner.hasNext(regexes.getWordRegex() + regexes.punctuationRegex())) {
 				String wordWithPunctuation = scanner.next();
 				/*
 				 * adds word to builder without punctuation
 				 */
-				System.out.println(wordWithPunctuation);
 				sentenceBuilder
 						.word(wordWithPunctuation.substring(0, wordWithPunctuation.length() - 1));
 				/*
@@ -106,6 +110,29 @@ public class TxtParser implements Parser {
 				 */
 				sentenceBuilder.punctuation(wordWithPunctuation
 						.substring(wordWithPunctuation.length() - 1, wordWithPunctuation.length()));
+			} 
+			/*
+			 * if word with punctutation like " -cat ", " "dog "
+			 */
+			else if (scanner.hasNext(regexes.punctuationRegex + regexes.wordRegex)) {
+				String wordWithPunctuation = scanner.next();
+				sentenceBuilder.punctuation(wordWithPunctuation.substring(0, 1));
+				sentenceBuilder
+						.word(wordWithPunctuation.substring(1, wordWithPunctuation.length()));
+			} 
+			/*
+			 * if word with punctutation like " 'cat' ", " (dog) "
+			 */
+			else {
+				String wordWithDoublePunctuation = scanner.next();
+				sentenceBuilder.punctuation(wordWithDoublePunctuation.substring(0, 1));
+				sentenceBuilder.word(wordWithDoublePunctuation.substring(1,
+						wordWithDoublePunctuation.length() - 1));
+				/*sentenceBuilder.punctuation(
+						wordWithDoublePunctuation.substring(wordWithDoublePunctuation.length() - 1,
+								wordWithDoublePunctuation.length()));
+								*/
+				
 			}
 		}
 		/*
@@ -115,9 +142,7 @@ public class TxtParser implements Parser {
 		 */
 		String lastWordWithDot = scanner.next();
 		sentenceBuilder.word(lastWordWithDot.substring(0, lastWordWithDot.length() - 1));
-		Sentence s = sentenceBuilder.punctuation(".").build();
-		System.out.println(s);
-		return s;
+		return sentenceBuilder.punctuation(".").build();
 	}
 	
 	/**
@@ -128,29 +153,39 @@ public class TxtParser implements Parser {
 	 * @author Jakub Ziarko
 	 */
 	private class Regexes {
-		private final String paragraphRegex = "\n\n";
-		private final String sectionRegex = "\n\n\n";
+		private final String paragraphRegex = "\t";
+		private final String sectionRegex = "\n\n\t";
 		/*
 		 * Normal word with dot at the end - without white space.
 		 */
-		private final String endOfSentence = "\\w+\\.";
+		private final String endOfSentence = "[\\p{IsAlphabetic} ]+\\.";
 		/*
 		 * "\\w" - for all words build only with letters ,
 		 * "-" - if the word is build from two words like "czerwono-czarny - but without 
 		 * white characters inside".
 		 */
-		private final String word = "[\\w-]+";
+		private final String wordRegex = "[\\p{IsAlphabetic}-]+";
+		private final String punctuationRegex = "[,.;:\"?!-–'{}()—–\\/]";
 		
-		public String getParagraphRegex() {
+		public String punctuationRegex() {
+			return punctuationRegex;
+		}
+		
+		public String paragraphRegex() {
 			return paragraphRegex;
 		}
 		
-		public String getSectionRegex() {
+		public String sectionRegex() {
 			return sectionRegex;
 		}
 		
-		public String getEndOfSentence() {
+		public String endOfSentence() {
 			return endOfSentence;
 		}
+		
+		public String getWordRegex() {
+			return wordRegex;
+		}
+		
 	}
 }

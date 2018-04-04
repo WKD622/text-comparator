@@ -52,7 +52,11 @@ public class SentenceBuilderImpl implements SentenceBuilder {
 			//TODO throw exeption 
 		}
 		i = 0;
-		return new Sentence(internalBuild());
+		Sentence s = new Sentence(internalBuild());
+		countEnd = 0;
+		countStart = 0;
+		elementsToBuild.clear();
+		return s;
 	}
 	
 	private List<TextElement> internalBuild() {
